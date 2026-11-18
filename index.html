@@ -1,308 +1,265 @@
-
 <!DOCTYPE html>
 <html lang="sw">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#14532d">
-<title>KILIMO AI | Smart Agriculture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KILIMO AI - Afrika Mashariki</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--green:#14532d;--lime:#84cc16;--bg:#f3f8f2;--dark:#183426}
-body{font-family:Arial,sans-serif;background:var(--bg);color:var(--dark)}
-header{background:var(--green);color:white;padding:17px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{font-size:23px;font-weight:900}
-.logo span{color:#bef264}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:13px}
-.hero{height:390px;position:relative;background:#173c25;overflow:hidden;color:white}
-.hero img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.65;transition:opacity 1s}
-.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:30px 7%;background:linear-gradient(90deg,#092b19cc,transparent)}
-.hero h1{font-size:clamp(30px,6vw,52px);max-width:650px;margin-bottom:15px}
-.hero p{font-size:17px;max-width:520px;line-height:1.6}
-.btn{display:inline-block;background:#84cc16;color:#142d1c;padding:13px 20px;border:0;border-radius:9px;font-weight:bold;text-decoration:none;cursor:pointer;margin-top:18px}
-.container{max-width:1150px;margin:auto;padding:28px 18px}
-.section-title{font-size:25px;margin-bottom:18px;color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000c}
-.card img{width:100%;height:155px;object-fit:cover}
-.card-content{padding:17px}
-.card h3{margin-bottom:8px;color:var(--green)}
-.card p{font-size:14px;line-height:1.5;color:#52645a}
-.chatbox{background:white;border-radius:16px;padding:20px;box-shadow:0 4px 20px #00000010}
-.messages{height:300px;overflow:auto;padding:10px;background:#f5f8f4;border-radius:10px;margin-bottom:12px}
-.msg{padding:12px;margin:8px 0;border-radius:10px;max-width:90%;white-space:pre-wrap;line-height:1.5;font-size:14px}
-.bot{background:#e0f2df}
-.user{background:#dbeafe;margin-left:auto}
-.chat-input{display:flex;gap:8px}
-.chat-input input{min-width:0;flex:1;padding:14px;border:1px solid #ccd8ce;border-radius:9px;font-size:15px}
-.chat-input button{background:var(--green);color:white;border:0;padding:12px 18px;border-radius:9px}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.quick button{padding:8px 12px;border:1px solid #c5d8c7;background:white;border-radius:20px;color:var(--green);cursor:pointer}
-.price{font-size:30px;color:var(--green);font-weight:bold;margin:12px 0}
-.premium{border:2px solid #84cc16;padding:25px;text-align:center}
-footer{background:#103b25;color:white;text-align:center;padding:28px;margin-top:30px}
-input,button{font-family:inherit}
-@media(max-width:600px){header{align-items:flex-start;gap:12px;flex-direction:column}.hero{height:340px}.hero-content{padding:22px}.chat-input button{padding:10px}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f7f1;color:#203b2b}
+header{background:#14532d;color:white;padding:17px;font-size:23px;font-weight:bold}
+nav{background:#1d6939;padding:13px;display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
+.hero{height:340px;background-size:cover;background-position:center;display:flex;align-items:center;padding:25px;color:white}
+.hero h1{font-size:36px}
+.container{max-width:1100px;margin:auto;padding:18px}
+.panel{background:white;padding:18px;border-radius:12px;margin:18px 0;box-shadow:0 2px 9px #0001}
+h2{color:#14532d}
+input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #bbb;border-radius:7px;font-size:16px}
+button{background:#176638;color:white;padding:12px 17px;border:0;border-radius:7px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px}
+.card{background:white;border-radius:10px;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px #0002}
+.card img{width:100%;height:140px;object-fit:cover}
+.card div{padding:12px}
+.card h3{color:#14532d;margin:4px}
+.chat{background:#f4f8f3;padding:12px;min-height:120px;max-height:300px;overflow:auto}
+.message{padding:10px;margin:7px;border-radius:8px;background:#e0efdf;white-space:pre-wrap}
+.user{background:#dceaff;text-align:right}
+footer{background:#14532d;color:white;padding:25px;text-align:center}
+small{color:#666}
 </style>
 </head>
 <body>
 
-<header>
- <div class="logo">🌱 KILIMO <span>AI</span></div>
- <nav>
-  <a href="#home">Nyumbani</a>
-  <a href="#huduma">Huduma</a>
-  <a href="#ushauri">AI Mshauri</a>
-  <a href="#premium">Premium</a>
- </nav>
-</header>
+<header>🌱 KILIMO AI</header>
+<nav>
+<a href="#usajili">Jisajili</a>
+<a href="#mazao">Mazao</a>
+<a href="#mifugo">Mifugo</a>
+<a href="#hali">Hali ya hewa</a>
+<a href="#maswali">Uliza AI</a>
+</nav>
 
-<section class="hero" id="home">
- <img id="heroImage" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85" alt="Shamba halisi">
- <div class="hero-content">
-  <h1>Karibu KILIMO AI</h1>
-  <p>Teknolojia ya kisasa kwa mkulima na mfugaji. Pata maarifa, ushauri na mbinu bora za kuongeza uzalishaji.</p>
-  <a href="#ushauri" class="btn">Anza kuzungumza na AI</a>
- </div>
+<section class="hero" id="hero">
+<div>
+<h1>Karibu KILIMO AI</h1>
+<p>Msaidizi wa kilimo na ufugaji Afrika Mashariki.</p>
+<button onclick="document.getElementById('usajili').scrollIntoView()">Jisajili sasa</button>
+</div>
 </section>
 
 <main class="container">
- <h2 class="section-title">Huduma zetu</h2>
- <section class="grid" id="huduma">
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1592982537447-6f2a6a0b6b8a?w=700&q=80" alt="Kilimo cha mazao">
-   <div class="card-content"><h3>🌽 Kilimo cha mazao</h3><p>Jifunze upandaji, mbolea, umwagiliaji na uvunaji wa mazao mbalimbali.</p></div>
-  </article>
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=700&q=80" alt="Ng'ombe shambani">
-   <div class="card-content"><h3>🐄 Ufugaji</h3><p>Maarifa kuhusu ng'ombe, mbuzi, kondoo, nguruwe na mifugo mingine.</p></div>
-  </article>
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=700&q=80" alt="Kuku">
-   <div class="card-content"><h3>🐔 Ufugaji wa kuku</h3><p>Lishe, banda, uzalishaji wa mayai na usimamizi wa kuku.</p></div>
-  </article>
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=700&q=80" alt="Mazao">
-   <div class="card-content"><h3>🦠 Magonjwa ya mimea</h3><p>Elewa dalili za magonjwa na pata mwongozo wa hatua za kuchukua.</p></div>
-  </article>
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&q=80" alt="Soko la mazao">
-   <div class="card-content"><h3>🛒 Masoko na biashara</h3><p>Jifunze kupanga biashara ya kilimo na kutafuta masoko.</p></div>
-  </article>
-  <article class="card">
-   <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=80" alt="Mkulima">
-   <div class="card-content"><h3>👨‍🌾 Ushauri wa kitaalamu</h3><p>Pata majibu yanayozingatia mazingira na hali ya kilimo chako.</p></div>
-  </article>
- </section>
 
- <section id="ushauri" style="margin-top:40px">
-  <h2 class="section-title">🤖 Zungumza na Kilimo AI</h2>
-  <div class="chatbox">
-   <p style="margin-bottom:12px">Uliza swali kuhusu kilimo au ufugaji kwa Kiswahili.</p>
-   <div class="quick">
-    <button onclick="askQuick('Nataka kulima mahindi. Nianzie wapi?')">Kilimo cha mahindi</button>
-    <button onclick="askQuick('Nipe mwongozo wa ufugaji wa kuku wa mayai.')">Kuku wa mayai</button>
-    <button onclick="askQuick('Nisaidie kutambua dalili za magonjwa ya mimea.')">Magonjwa ya mimea</button>
-   </div>
-   <div class="messages" id="messages" aria-live="polite">
-    <div class="msg bot">Habari! Mimi ni Kilimo AI. 🌱 Naweza kukusaidia kuhusu kilimo, mifugo, magonjwa na biashara ya mazao. Ungependa kujifunza nini?</div>
-   </div>
-   <div class="chat-input">
-    <input id="question" placeholder="Andika swali lako hapa..." onkeydown="if(event.key==='Enter')sendQuestion()">
-    <button id="sendBtn" onclick="sendQuestion()">Tuma ➤</button>
-   </div>
-   <p id="status" style="font-size:12px;color:#64748b;margin-top:10px">AI itahitaji intaneti kufanya kazi.</p>
-  </div>
- </section>
+<section class="panel" id="usajili">
+<h2>📝 Jisajili na weka eneo lako</h2>
+<p>Jaza taarifa zako ili mfumo utambue eneo lako na kukusaidia kupata hali ya hewa.</p>
 
- <section id="premium" style="margin-top:40px">
-  <h2 class="section-title">KILIMO AI Premium</h2>
-  <div class="card premium">
-   <h3>🌟 Premium Membership</h3>
-   <div class="price">TSh 10,000 <small style="font-size:14px">/ mwezi</small></div>
-   <p>Mpango wa Premium kwa watumiaji wanaotaka huduma za ziada.</p>
-   <p style="margin-top:12px">✓ Ushauri wa AI</p>
-   <p>✓ Elimu ya kilimo na ufugaji</p>
-   <p>✓ Mwongozo wa magonjwa na uzalishaji</p>
-   <p>✓ Huduma kupitia simu na kompyuta</p>
-   <button class="btn" onclick="alert('Mfumo wa malipo utaunganishwa baada ya kuweka mtoa huduma wa malipo.')">Jiunge na Premium</button>
-   <p style="font-size:12px;margin-top:12px;color:#64748b">Malipo bado hayajaunganishwa. Usitume fedha kupitia kitufe hiki.</p>
-  </div>
- </section>
+<form id="registration">
+<label>Jina lako</label>
+<input id="name" required placeholder="Andika jina lako">
+
+<label>Nchi</label>
+<select id="country">
+<option>Tanzania</option>
+<option>Kenya</option>
+<option>Uganda</option>
+<option>Rwanda</option>
+<option>Burundi</option>
+<option>South Sudan</option>
+</select>
+
+<label>Mkoa / eneo</label>
+<input id="region" required placeholder="Mfano: Arusha">
+
+<label>Wilaya / mji</label>
+<input id="district" placeholder="Mfano: Arusha mjini">
+
+<button type="submit">Hifadhi taarifa</button>
+</form>
+<p id="registerStatus"></p>
+</section>
+
+<section id="mazao">
+<h2>🌽 Chagua zao lako</h2>
+<input id="search" placeholder="Tafuta zao..." oninput="showCrops()">
+<div class="grid" id="cropList"></div>
+<div class="panel" id="cropDetails" hidden></div>
+</section>
+
+<section id="mifugo">
+<h2>🐄 Mifugo</h2>
+<div class="grid" id="animalList"></div>
+<div class="panel" id="animalDetails" hidden></div>
+</section>
+
+<section class="panel" id="hali">
+<h2>🌦️ Hali ya hewa ya eneo lako</h2>
+<p>Hali ya hewa itatafutwa kulingana na mkoa ulioweka wakati wa kujisajili.</p>
+<input id="weatherLocation" placeholder="Mkoa au mji">
+<button onclick="getWeather()">Angalia hali ya hewa</button>
+<div id="weatherResult"></div>
+<small>Chanzo: Open-Meteo. Unahitaji intaneti ili kupata utabiri.</small>
+</section>
+
+<section class="panel" id="maswali">
+<h2>🤖 Msaidizi wa Kilimo AI</h2>
+<div class="chat" id="chat">
+<div class="message">Karibu! Uliza kuhusu kilimo au ufugaji.</div>
+</div>
+<input id="question" placeholder="Andika swali lako...">
+<button onclick="askQuestion()">Tuma swali</button>
+<p><small>Majibu ya sasa yanatumia mwongozo wa ndani. Gemini AI bado inahitaji kuunganishwa na seva salama.</small></p>
+</section>
 </main>
 
-<footer>
- <h3>🌱 KILIMO AI</h3>
- <p style="margin-top:8px">Teknolojia kwa maendeleo ya kilimo na ufugaji.</p>
- <p style="margin-top:8px;font-size:12px">© 2026 KILIMO AI. Haki zote zimehifadhiwa.</p>
-</footer>
+<footer>© 2026 KILIMO AI — Maarifa ya kilimo Afrika Mashariki</footer>
 
 <script>
-// Badilisha picha ya ukurasa kila baada ya sekunde 5
+const crops=[
+["Mahindi","Nafaka","https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600","Andaa shamba vizuri. Tumia mbegu bora zinazofaa eneo lako. Panda kwa nafasi inayopendekezwa na aina ya mbegu. Palilia mapema, kagua viwavi jeshi na magonjwa. Vuna punje zikikomaa na kukauka."],
+["Mpunga","Nafaka","https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600","Chagua aina inayofaa eneo lako. Andaa kitalu au panda moja kwa moja. Sawazisha shamba, dhibiti maji na magugu. Kagua magonjwa na vuna masuke yanapokomaa."],
+["Maharage","Nafaka","https://images.unsplash.com/photo-1515543904379-3d757ufe?w=600","Tumia mbegu safi. Panda kwenye udongo unaopitisha maji. Palilia mapema, kagua magonjwa na vuna maganda yanapokauka."],
+["Muhogo","Mizizi","https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600","Tumia vipando vyenye afya. Panda kwenye matuta au vilima. Palilia mapema na kagua batobato ya muhogo."],
+["Viazi mviringo","Mizizi","https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600","Tumia mbegu-viazi safi. Andaa udongo tifutifu, panda kwenye matuta, pandishia udongo na kagua magonjwa."],
+["Viazi vitamu","Mizizi","https://images.unsplash.com/photo-1596097635121-14b63b7a0c19?w=600","Tumia vipando vyenye afya. Panda kwenye matuta, palilia na kagua fukusi wa viazi."],
+["Nyanya","Mboga","https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600","Tengeneza kitalu. Hamishia miche yenye afya, weka fito, mwagilia kwa utaratibu na kagua blight na wadudu."],
+["Vitunguu","Mboga","https://images.unsplash.com/photo-1508747703725-719777637510?w=600","Tumia mbegu bora. Pandikiza miche imara, mwagilia kwa kiasi na kausha vitunguu vizuri baada ya kuvuna."],
+["Kabichi","Mboga","https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?w=600","Tengeneza kitalu, hamishia miche, mwagilia, palilia na kagua viwavi na magonjwa."],
+["Sukuma wiki","Mboga","https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600","Panda mbegu au miche kwenye udongo wenye mboji. Mwagilia na vuna majani kwa awamu."],
+["Tikiti maji","Matunda","https://images.unsplash.com/photo-1563114773-84221bd62daa?w=600","Chagua eneo lenye jua, panda mbegu bora, mwagilia kwa utaratibu na kagua wadudu."],
+["Ndizi","Matunda","https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600","Tumia miche safi, panda kwenye mashimo yenye mboji, weka matandazo na dhibiti magonjwa."],
+["Parachichi","Matunda","https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=600","Tumia mche uliopandikizwa. Panda kwenye udongo unaopitisha maji na tunza mche kwa kumwagilia."]
+];
+
+const animals=[
+["Kuku","https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=600","Andaa banda lenye hewa, sakafu kavu na nafasi ya kutosha. Tumia chakula kulingana na umri, maji safi na ratiba ya chanjo kutoka kwa afisa mifugo."],
+["Ng'ombe","https://images.unsplash.com/photo-1516467508483-a7212f474f2a?w=600","Toa malisho bora, maji safi, banda lenye hewa na huduma za daktari wa mifugo. Fuatilia afya, uzazi na uzalishaji."],
+["Mbuzi","https://images.unsplash.com/photo-1524024973431-2ad916746881?w=600","Jenga banda kavu, toa malisho bora na maji, fuata chanjo na tiba ya minyoo kwa ushauri wa daktari."],
+["Kondoo","https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=600","Wape malisho bora, maji safi, banda kavu na huduma za afya za mifugo."]
+];
+
+function showCrops(){
+let q=document.getElementById("search").value.toLowerCase();
+document.getElementById("cropList").innerHTML=crops.filter(c=>c[0].toLowerCase().includes(q)).map(c=>`
+<div class="card" onclick="cropGuide('${c[0]}')">
+<img src="${c[2]}" alt="${c[0]}" onerror="this.style.display='none'">
+<div><h3>${c[0]}</h3><p>${c[1]}</p><button>Fungua mwongozo</button></div>
+</div>`).join("");
+}
+
+function cropGuide(name){
+let c=crops.find(x=>x[0]===name);
+let box=document.getElementById("cropDetails");
+box.hidden=false;
+box.innerHTML="<h2>🌱 Mwongozo wa "+c[0]+"</h2><p>"+c[3]+"</p><p>Mahitaji ya mbolea, nafasi na muda wa kuvuna hutegemea aina ya zao, udongo na eneo. Pata ushauri wa afisa ugani wa eneo lako.</p>";
+box.scrollIntoView({behavior:"smooth"});
+}
+
+document.getElementById("animalList").innerHTML=animals.map(a=>`
+<div class="card" onclick="animalGuide('${a[0]}')">
+<img src="${a[1]}" alt="${a[0]}" onerror="this.style.display='none'">
+<div><h3>${a[0]}</h3><button>Fungua mwongozo</button></div>
+</div>`).join("");
+
+function animalGuide(name){
+let a=animals.find(x=>x[0]===name);
+let box=document.getElementById("animalDetails");
+box.hidden=false;
+box.innerHTML="<h2>🐄 Ufugaji wa "+a[0]+"</h2><p>"+a[2]+"</p>";
+box.scrollIntoView({behavior:"smooth"});
+}
+
+/* Usajili na kuhifadhi eneo la mtumiaji */
+document.getElementById("registration").addEventListener("submit",function(e){
+e.preventDefault();
+let profile={
+name:document.getElementById("name").value.trim(),
+country:document.getElementById("country").value,
+region:document.getElementById("region").value.trim(),
+district:document.getElementById("district").value.trim()
+};
+localStorage.setItem("kilimoAIprofile",JSON.stringify(profile));
+document.getElementById("weatherLocation").value=
+[profile.district,profile.region,profile.country].filter(Boolean).join(", ");
+document.getElementById("registerStatus").textContent=
+"Asante "+profile.name+". Taarifa zako zimehifadhiwa. Eneo: "+profile.region+", "+profile.country;
+});
+
+function loadProfile(){
+let p=JSON.parse(localStorage.getItem("kilimoAIprofile")||"null");
+if(p){
+document.getElementById("name").value=p.name;
+document.getElementById("country").value=p.country;
+document.getElementById("region").value=p.region;
+document.getElementById("district").value=p.district;
+document.getElementById("weatherLocation").value=
+[p.district,p.region,p.country].filter(Boolean).join(", ");
+}
+}
+
+async function getWeather(){
+let place=document.getElementById("weatherLocation").value.trim();
+let result=document.getElementById("weatherResult");
+if(!place){result.textContent="Jisajili na ujaze mkoa wako kwanza.";return;}
+result.textContent="Inatafuta hali ya hewa...";
+try{
+let g=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(place)+"&count=1&language=sw&format=json");
+let gd=await g.json();
+if(!gd.results||!gd.results.length){result.textContent="Eneo halijapatikana. Jaribu jina la mji au mkoa.";return;}
+let loc=gd.results[0];
+let url="https://api.open-meteo.com/v1/forecast?latitude="+loc.latitude+"&longitude="+loc.longitude+"&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=3";
+let r=await fetch(url);
+let w=await r.json();
+let c=w.current,d=w.daily;
+let codes={0:"Anga safi",1:"Karibu safi",2:"Mawingu kiasi",3:"Mawingu mengi",45:"Ukungu",51:"Manyunyu",53:"Manyunyu",55:"Manyunyu makali",61:"Mvua nyepesi",63:"Mvua ya wastani",65:"Mvua kubwa",80:"Manyunyu",81:"Mvua",82:"Mvua kubwa",95:"Ngurumo na radi"};
+let html="<h3>"+loc.name+", "+(loc.country||"")+"</h3>";
+html+="<p><b>Hali ya sasa:</b> "+(codes[c.weather_code]||"Hali imechanganyika")+" · "+Math.round(c.temperature_2m)+"°C</p>";
+html+="<p>Unyevunyevu: "+c.relative_humidity_2m+"% · Upepo: "+c.wind_speed_10m+" km/h</p><h3>Utabiri wa siku 3</h3>";
+for(let i=0;i<d.time.length;i++){
+html+="<p>"+d.time[i]+": "+Math.round(d.temperature_2m_min[i])+"°C hadi "+Math.round(d.temperature_2m_max[i])+"°C. Uwezekano wa mvua: "+d.precipitation_probability_max[i]+"%</p>";
+}
+html+="<small>Chanzo: Open-Meteo</small>";
+result.innerHTML=html;
+}catch(e){result.textContent="Imeshindikana kupata hali ya hewa. Hakikisha intaneti ipo na ujaribu tena.";}
+}
+
+function askQuestion(){
+let input=document.getElementById("question");
+let q=input.value.trim();
+if(!q)return;
+let chat=document.getElementById("chat");
+let u=document.createElement("div");
+u.className="message user";
+u.textContent=q;
+chat.appendChild(u);
+let answer="Tafadhali taja zao au mnyama, nchi, mkoa na tatizo unalopata ili upate mwongozo unaofaa.";
+let match=crops.find(c=>q.toLowerCase().includes(c[0].toLowerCase()));
+if(match)answer="Mwongozo wa "+match[0]+": "+match[3];
+let animal=animals.find(a=>q.toLowerCase().includes(a[0].toLowerCase()));
+if(animal)answer="Mwongozo wa "+animal[0]+": "+animal[2];
+let b=document.createElement("div");
+b.className="message";
+b.textContent=answer;
+chat.appendChild(b);
+chat.scrollTop=chat.scrollHeight;
+input.value="";
+}
+
+/* Picha ya mwanzo hubadilika kila sekunde 5 */
 const heroPhotos=[
- "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85",
- "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=1600&q=85",
- "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1600&q=85",
- "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600&q=85",
- "https://images.unsplash.com/photo-1523742815152-4f8c5a5a6b3f?w=1600&q=85"
+"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400",
+"https://images.unsplash.com/photo-1499529112087-3cb3b73?auto=format&fit=crop&w=1400",
+"https://images.unsplash.com/photo-1523742812378-1d9f2b9b8f?auto=format&fit=crop&w=1400"
 ];
 let photoIndex=0;
 setInterval(()=>{
- photoIndex=(photoIndex+1)%heroPhotos.length;
- const img=document.getElementById("heroImage");
- img.style.opacity="0";
- setTimeout(()=>{img.src=heroPhotos[photoIndex];img.style.opacity=".65"},500);
+photoIndex=(photoIndex+1)%heroPhotos.length;
+document.getElementById("hero").style.backgroundImage=
+"linear-gradient(#0007,#0007),url('"+heroPhotos[photoIndex]+"')";
 },5000);
 
-// Weka URL ya Cloudflare Worker baada ya ku-deploy
-const WORKER_URL="WEKA_URL_YA_CLOUDFLARE_WORKER_HAPA";
-
-function addMessage(text,type){
- const box=document.getElementById("messages");
- const div=document.createElement("div");
- div.className="msg "+type;
- div.textContent=text;
- box.appendChild(div);
- box.scrollTop=box.scrollHeight;
-}
-function askQuick(text){
- document.getElementById("question").value=text;
- sendQuestion();
-}
-async function sendQuestion(){
- const input=document.getElementById("question");
- const btn=document.getElementById("sendBtn");
- const question=input.value.trim();
- if(!question)return;
- if(WORKER_URL.includes("WEKA_URL")){
-  addMessage("Kwanza weka anwani ya Cloudflare Worker kwenye code ya ukurasa.","bot");
-  return;
- }
- addMessage(question,"user");
- input.value="";
- btn.disabled=true;
- btn.textContent="...";
- document.getElementById("status").textContent="Kilimo AI inatafuta jibu...";
- try{
-  const response=await fetch(WORKER_URL,{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({question})
-  });
-  const data=await response.json();
-  if(!response.ok)throw new Error(data.error||"Imeshindikana kupata jibu.");
-  addMessage(data.answer||"Sijapata jibu. Jaribu tena.","bot");
- }catch(error){
-  addMessage("Samahani, kuna tatizo la kuunganisha AI. Hakikisha Worker imewekwa sawa na intaneti ipo. "+error.message,"bot");
- }finally{
-  btn.disabled=false;
-  btn.textContent="Tuma ➤";
-  document.getElementById("status").textContent="Unaweza kuuliza swali jingine.";
- }
-}
-// KILIMO AI - HUDUMA ZOTE ZIFUNGUE
-
-const services = [
- {
-  title:"🌽 Kilimo cha mazao",
-  desc:"Pata elimu kuhusu mahindi, mpunga, maharage, nyanya, vitunguu, matunda na mboga.",
-  prompt:"Nisaidie kuhusu kilimo cha mazao. Nataka kujua namna bora ya kuanza, kupanda, kuweka mbolea na kuvuna."
- },
- {
-  title:"🐄 Ufugaji",
-  desc:"Jifunze ufugaji wa ng'ombe, mbuzi, kondoo na nguruwe, lishe na utunzaji.",
-  prompt:"Nipe mwongozo wa ufugaji wa mifugo, lishe, banda, magonjwa na biashara."
- },
- {
-  title:"🐔 Ufugaji wa kuku",
-  desc:"Pata elimu ya kuku wa mayai na nyama, chakula, banda, chanjo na uzalishaji.",
-  prompt:"Nataka kuanza ufugaji wa kuku. Nielekeze kuhusu banda, chakula, chanjo na gharama."
- },
- {
-  title:"🦠 Magonjwa ya mimea",
-  desc:"Jifunze kutambua dalili za magonjwa ya mimea, kinga na hatua za matibabu.",
-  prompt:"Nisaidie kutambua na kudhibiti magonjwa ya mimea."
- },
- {
-  title:"🛒 Masoko na biashara",
-  desc:"Jifunze kupanga biashara, kutafuta masoko, kukokotoa gharama na faida.",
-  prompt:"Nisaidie kupanga biashara ya kilimo, gharama, faida na masoko Tanzania."
- },
- {
-  title:"👨‍🌾 Ushauri wa kitaalamu",
-  desc:"Uliza maswali yoyote kuhusu kilimo na ufugaji na pata ushauri kutoka Kilimo AI.",
-  prompt:"Nipe ushauri wa kitaalamu kuhusu kilimo na ufugaji."
- }
-];
-
-const serviceModal = document.createElement("div");
-serviceModal.id = "serviceModal";
-serviceModal.style.cssText = `
- position:fixed;inset:0;background:#000b;z-index:9999;
- display:none;align-items:center;justify-content:center;
- padding:15px;
-`;
-serviceModal.innerHTML = `
- <div style="background:white;padding:25px;border-radius:18px;
- width:100%;max-width:500px;max-height:85vh;overflow:auto">
-  <button id="closeService" style="float:right;border:0;
-  background:#eee;border-radius:50%;padding:9px;cursor:pointer">✕</button>
-  <div id="serviceDetails"></div>
-  <button id="askService" style="width:100%;padding:15px;
-  background:#14532d;color:white;border:0;border-radius:10px;
-  font-weight:bold;margin-top:20px;cursor:pointer">
-   Uliza Kilimo AI
-  </button>
- </div>
-`;
-document.body.appendChild(serviceModal);
-
-let selectedService = null;
-
-function openService(index) {
- selectedService = services[index];
- if (!selectedService) return;
-
- document.getElementById("serviceDetails").innerHTML = `
-  <h2 style="color:#14532d;margin:20px 0">
-   ${selectedService.title}
-  </h2>
-  <p style="line-height:1.8;color:#405548">
-   ${selectedService.desc}
-  </p>
-  <p style="margin-top:18px;color:#14532d;font-weight:bold">
-   Karibu ujifunze zaidi kupitia Kilimo AI.
-  </p>
- `;
- serviceModal.style.display = "flex";
-}
-
-document.getElementById("closeService").onclick = () => {
- serviceModal.style.display = "none";
-};
-
-serviceModal.addEventListener("click", e => {
- if(e.target === serviceModal) {
-  serviceModal.style.display = "none";
- }
-});
-
-document.getElementById("askService").onclick = () => {
- if(!selectedService) return;
- serviceModal.style.display = "none";
- document.getElementById("question").value =
-  selectedService.prompt;
- document.getElementById("ushauri").scrollIntoView({
-  behavior:"smooth"
- });
-};
-
-document.querySelectorAll("#huduma .card").forEach((card,index) => {
- card.style.cursor = "pointer";
- card.addEventListener("click", () => openService(index));
-});
-
+loadProfile();
+showCrops();
 </script>
 </body>
 </html>
