@@ -1,265 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sw">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KILIMO AI - Afrika Mashariki</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#14532d">
+<title>Kilimo AI — Msaidizi wa Kilimo Afrika Mashariki</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f2f7f1;color:#203b2b}
-header{background:#14532d;color:white;padding:17px;font-size:23px;font-weight:bold}
-nav{background:#1d6939;padding:13px;display:flex;gap:18px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none}
-.hero{height:340px;background-size:cover;background-position:center;display:flex;align-items:center;padding:25px;color:white}
-.hero h1{font-size:36px}
-.container{max-width:1100px;margin:auto;padding:18px}
-.panel{background:white;padding:18px;border-radius:12px;margin:18px 0;box-shadow:0 2px 9px #0001}
-h2{color:#14532d}
-input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #bbb;border-radius:7px;font-size:16px}
-button{background:#176638;color:white;padding:12px 17px;border:0;border-radius:7px;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px}
-.card{background:white;border-radius:10px;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px #0002}
-.card img{width:100%;height:140px;object-fit:cover}
-.card div{padding:12px}
-.card h3{color:#14532d;margin:4px}
-.chat{background:#f4f8f3;padding:12px;min-height:120px;max-height:300px;overflow:auto}
-.message{padding:10px;margin:7px;border-radius:8px;background:#e0efdf;white-space:pre-wrap}
-.user{background:#dceaff;text-align:right}
-footer{background:#14532d;color:white;padding:25px;text-align:center}
-small{color:#666}
+:root{--green:#14532d;--green2:#1f7a45;--light:#f2f7f1;--ink:#193326;--muted:#607368;--line:#dce8dd}
+*{box-sizing:border-box}body{margin:0;font-family:Arial, sans-serif;background:var(--light);color:var(--ink);line-height:1.55}
+header{background:var(--green);color:white;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+.brand{font-weight:800;font-size:21px;letter-spacing:.4px}.brand span{color:#b7ef9b}nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:white;text-decoration:none;font-size:14px}
+.hero{min-height:330px;color:white;padding:54px 6%;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.15)),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85') center/cover;transition:background-image .5s}
+.hero-inner{max-width:700px}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:0 0 14px}.hero p{font-size:17px;max-width:620px}.hero button,.primary{background:#e3f4d7;color:#164323;border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer}
+.wrap{width:min(1150px,92%);margin:28px auto}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}.section-head h2{margin:0;color:var(--green)}.muted{color:var(--muted)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.panel,.card,.chatbox{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:0 3px 12px #183b1710}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd9cd;border-radius:9px;font:inherit;background:white;color:var(--ink)}
+button{font:inherit}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filters button{border:1px solid var(--line);background:white;border-radius:30px;padding:8px 13px;cursor:pointer}.filters button.active{background:var(--green);color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:15px}
+.card{padding:0;overflow:hidden;cursor:pointer;transition:.18s}.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #183b1720}.card img{width:100%;height:145px;object-fit:cover;display:block}.card-body{padding:13px}.card h3{margin:0 0 5px;color:var(--green)}.card p{margin:0;color:var(--muted);font-size:14px}
+button.action{margin-top:12px;background:var(--green);color:white;border:0;border-radius:8px;padding:10px 13px;cursor:pointer}
+#details{display:none;margin-top:18px}.detail-content h3{color:var(--green)}.detail-content li{margin:6px 0}
+.chatbox{margin-top:20px}.chatlog{height:240px;overflow:auto;background:#f7faf6;border:1px solid var(--line);padding:12px;border-radius:9px;margin:12px 0}.msg{padding:9px 11px;margin:7px 0;border-radius:10px;max-width:92%;white-space:pre-wrap}.bot{background:#e7f2e6}.user{background:#dcecff;margin-left:auto}
+.row{display:flex;gap:8px}.row>*{flex:1}.notice{background:#fff8df;border:1px solid #eadb9c;padding:12px;border-radius:10px;color:#66551c;font-size:14px}
+footer{background:#103e25;color:#e7f2e8;padding:25px 5%;margin-top:40px;text-align:center}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column}nav{gap:12px}.hero{min-height:350px;padding:38px 5%}.row{flex-direction:column}}
 </style>
 </head>
 <body>
-
-<header>🌱 KILIMO AI</header>
-<nav>
-<a href="#usajili">Jisajili</a>
-<a href="#mazao">Mazao</a>
-<a href="#mifugo">Mifugo</a>
-<a href="#hali">Hali ya hewa</a>
-<a href="#maswali">Uliza AI</a>
-</nav>
-
-<section class="hero" id="hero">
-<div>
-<h1>Karibu KILIMO AI</h1>
-<p>Msaidizi wa kilimo na ufugaji Afrika Mashariki.</p>
-<button onclick="document.getElementById('usajili').scrollIntoView()">Jisajili sasa</button>
-</div>
-</section>
-
-<main class="container">
-
-<section class="panel" id="usajili">
+<header><div class="brand">🌱 KILIMO <span>AI</span></div><nav><a href="#mazao">Mazao</a><a href="#mifugo">Mifugo</a><a href="#msaidizi">Uliza AI</a><a href="#taarifa">Taarifa</a></nav></header>
+<section class="hero" id="hero"><div class="hero-inner"><h1>Maarifa ya kilimo, hatua kwa hatua.</h1><p>Mwongozo wa mazao na mifugo kwa wakulima wa Tanzania na Afrika Mashariki.</p><button onclick="document.querySelector('#mazao').scrollIntoView({behavior:'smooth'})">Anza hapa</button></div></section>
+<main class="wrap">
+<section id="usajili" class="panel" style="margin:24px 0">
 <h2>📝 Jisajili na weka eneo lako</h2>
-<p>Jaza taarifa zako ili mfumo utambue eneo lako na kukusaidia kupata hali ya hewa.</p>
-
-<form id="registration">
-<label>Jina lako</label>
-<input id="name" required placeholder="Andika jina lako">
-
-<label>Nchi</label>
-<select id="country">
-<option>Tanzania</option>
-<option>Kenya</option>
-<option>Uganda</option>
-<option>Rwanda</option>
-<option>Burundi</option>
-<option>South Sudan</option>
-</select>
-
-<label>Mkoa / eneo</label>
-<input id="region" required placeholder="Mfano: Arusha">
-
-<label>Wilaya / mji</label>
-<input id="district" placeholder="Mfano: Arusha mjini">
-
-<button type="submit">Hifadhi taarifa</button>
+<p class="muted">Weka nchi na mkoa unaoishi au kulimia. Taarifa hizi zitatumika kutafuta hali ya hewa ya eneo lako.</p>
+<form id="registerForm" class="tools" style="margin-bottom:0">
+<div><label for="regName">Jina lako</label><input id="regName" required placeholder="Andika jina lako"></div>
+<div><label for="regCountry">Nchi</label><select id="regCountry" required><option value="Tanzania">Tanzania</option><option value="Kenya">Kenya</option><option value="Uganda">Uganda</option><option value="Rwanda">Rwanda</option><option value="Burundi">Burundi</option><option value="South Sudan">South Sudan</option></select></div>
+<div><label for="regRegion">Mkoa / eneo</label><input id="regRegion" required placeholder="Mfano: Arusha, Dodoma, Nairobi"></div>
+<div><label for="regDistrict">Wilaya / mji (si lazima)</label><input id="regDistrict" placeholder="Mfano: Arusha mjini"></div>
+<div style="display:flex;align-items:end"><button class="action" type="submit">Hifadhi taarifa</button></div>
 </form>
-<p id="registerStatus"></p>
+<p id="regStatus" class="muted" aria-live="polite"></p>
 </section>
 
-<section id="mazao">
-<h2>🌽 Chagua zao lako</h2>
-<input id="search" placeholder="Tafuta zao..." oninput="showCrops()">
-<div class="grid" id="cropList"></div>
-<div class="panel" id="cropDetails" hidden></div>
-</section>
+<section id="mazao"><div class="section-head"><div><h2>Chagua zao au huduma</h2><div class="muted">Gusa picha au jina ili kufungua mwongozo.</div></div></div>
+<div style="margin-top:15px"><input id="search" placeholder="Tafuta zao, mfano mahindi, nyanya..." oninput="render()"></div>
+<div class="filters" id="filters"><button class="active" onclick="setFilter('Zote',this)">Zote</button><button onclick="setFilter('Nafaka',this)">Nafaka</button><button onclick="setFilter('Mizizi',this)">Mizizi</button><button onclick="setFilter('Mboga',this)">Mboga</button><button onclick="setFilter('Matunda',this)">Matunda</button><button onclick="setFilter('Mifugo',this)">Mifugo</button></div>
+<div class="grid" id="cards"></div><div id="details" class="panel"></div></section>
+<section id="mifugo" class="wrap" style="width:100%;padding:0"><h2>Mifugo na ufugaji</h2><p class="muted">Chagua kuku au ng'ombe kwenye orodha hapo juu ili kupata mwongozo wa ufugaji.</p></section>
+<section id="msaidizi"><div class="chatbox"><h2>🤖 Msaidizi wa Kilimo AI</h2><p class="muted">Uliza swali. Bila kuunganisha huduma ya AI ya mtandaoni, mfumo huu utatoa mwongozo wa msingi uliopo ndani ya tovuti.</p><div class="chatlog" id="chatlog"><div class="msg bot">Karibu! Niulize kuhusu zao au ufugaji. Mfano: “Ninalimaje mahindi?”</div></div><div class="row"><input id="question" placeholder="Andika swali lako..." onkeydown="if(event.key==='Enter')ask()"><button class="action" onclick="ask()">Tuma</button></div></div></section>
 
-<section id="mifugo">
-<h2>🐄 Mifugo</h2>
-<div class="grid" id="animalList"></div>
-<div class="panel" id="animalDetails" hidden></div>
-</section>
-
-<section class="panel" id="hali">
+<section id="taarifa" class="wrap" style="width:100%;padding:0">
 <h2>🌦️ Hali ya hewa ya eneo lako</h2>
-<p>Hali ya hewa itatafutwa kulingana na mkoa ulioweka wakati wa kujisajili.</p>
-<input id="weatherLocation" placeholder="Mkoa au mji">
-<button onclick="getWeather()">Angalia hali ya hewa</button>
-<div id="weatherResult"></div>
-<small>Chanzo: Open-Meteo. Unahitaji intaneti ili kupata utabiri.</small>
-</section>
-
-<section class="panel" id="maswali">
-<h2>🤖 Msaidizi wa Kilimo AI</h2>
-<div class="chat" id="chat">
-<div class="message">Karibu! Uliza kuhusu kilimo au ufugaji.</div>
+<p class="muted">Hali ya hewa itatafutwa kwa kutumia nchi na mkoa uliohifadhi wakati wa kujisajili. Unaweza pia kuandika eneo jingine.</p>
+<div class="panel">
+<div class="row"><input id="weatherPlace" placeholder="Mkoa au mji, mfano Arusha"><button class="action" onclick="getWeather()">Angalia hali ya hewa</button></div>
+<div id="weatherResult" style="margin-top:14px" aria-live="polite">Jisajili na uhifadhi mkoa wako, kisha bonyeza “Angalia hali ya hewa”.</div>
 </div>
-<input id="question" placeholder="Andika swali lako...">
-<button onclick="askQuestion()">Tuma swali</button>
-<p><small>Majibu ya sasa yanatumia mwongozo wa ndani. Gemini AI bado inahitaji kuunganishwa na seva salama.</small></p>
+<div class="notice" style="margin-top:12px">Taarifa hutegemea upatikanaji wa huduma ya Open-Meteo na usahihi wa jina la eneo. Utabiri unaweza kutofautiana na hali halisi shambani.</div>
 </section>
-</main>
 
-<footer>© 2026 KILIMO AI — Maarifa ya kilimo Afrika Mashariki</footer>
-
+</main><footer>© 2026 KILIMO AI · Maarifa kwa wakulima wa Afrika Mashariki</footer>
 <script>
-const crops=[
-["Mahindi","Nafaka","https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600","Andaa shamba vizuri. Tumia mbegu bora zinazofaa eneo lako. Panda kwa nafasi inayopendekezwa na aina ya mbegu. Palilia mapema, kagua viwavi jeshi na magonjwa. Vuna punje zikikomaa na kukauka."],
-["Mpunga","Nafaka","https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600","Chagua aina inayofaa eneo lako. Andaa kitalu au panda moja kwa moja. Sawazisha shamba, dhibiti maji na magugu. Kagua magonjwa na vuna masuke yanapokomaa."],
-["Maharage","Nafaka","https://images.unsplash.com/photo-1515543904379-3d757ufe?w=600","Tumia mbegu safi. Panda kwenye udongo unaopitisha maji. Palilia mapema, kagua magonjwa na vuna maganda yanapokauka."],
-["Muhogo","Mizizi","https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600","Tumia vipando vyenye afya. Panda kwenye matuta au vilima. Palilia mapema na kagua batobato ya muhogo."],
-["Viazi mviringo","Mizizi","https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600","Tumia mbegu-viazi safi. Andaa udongo tifutifu, panda kwenye matuta, pandishia udongo na kagua magonjwa."],
-["Viazi vitamu","Mizizi","https://images.unsplash.com/photo-1596097635121-14b63b7a0c19?w=600","Tumia vipando vyenye afya. Panda kwenye matuta, palilia na kagua fukusi wa viazi."],
-["Nyanya","Mboga","https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=600","Tengeneza kitalu. Hamishia miche yenye afya, weka fito, mwagilia kwa utaratibu na kagua blight na wadudu."],
-["Vitunguu","Mboga","https://images.unsplash.com/photo-1508747703725-719777637510?w=600","Tumia mbegu bora. Pandikiza miche imara, mwagilia kwa kiasi na kausha vitunguu vizuri baada ya kuvuna."],
-["Kabichi","Mboga","https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?w=600","Tengeneza kitalu, hamishia miche, mwagilia, palilia na kagua viwavi na magonjwa."],
-["Sukuma wiki","Mboga","https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600","Panda mbegu au miche kwenye udongo wenye mboji. Mwagilia na vuna majani kwa awamu."],
-["Tikiti maji","Matunda","https://images.unsplash.com/photo-1563114773-84221bd62daa?w=600","Chagua eneo lenye jua, panda mbegu bora, mwagilia kwa utaratibu na kagua wadudu."],
-["Ndizi","Matunda","https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600","Tumia miche safi, panda kwenye mashimo yenye mboji, weka matandazo na dhibiti magonjwa."],
-["Parachichi","Matunda","https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=600","Tumia mche uliopandikizwa. Panda kwenye udongo unaopitisha maji na tunza mche kwa kumwagilia."]
+const data=[
+{name:'Mahindi',cat:'Nafaka',img:'https://images.unsplash.com/photo-1601593768794-7c1ef7f8f1e4?auto=format&fit=crop&w=700&q=80',intro:'Zao la chakula na biashara.',guide:['Andaa shamba kwa kulima na kusawazisha; epuka maeneo yanayotuamisha maji.','Tumia mbegu bora zilizothibitishwa na zinazofaa eneo lako.','Panda kwa mistari; nafasi ya kawaida ni takriban 75 cm kati ya mistari na 25–30 cm kati ya mimea, lakini fuata maelekezo ya aina ya mbegu.','Weka samadi iliyooza au mbolea kulingana na uchunguzi wa udongo na ushauri wa afisa ugani.','Palilia mapema, kagua viwavi jeshi na dalili za magonjwa mara kwa mara.','Vuna punje zikikomaa na kukauka; kausha vizuri kabla ya kuhifadhi kwenye ghala safi na kavu.']},
+{name:'Mpunga',cat:'Nafaka',img:'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=700&q=80',intro:'Kilimo cha mpunga wa umwagiliaji au kutegemea mvua.',guide:['Chagua aina inayofaa mfumo wa umwagiliaji na muda wa msimu.','Andaa kitalu au panda moja kwa moja kulingana na mfumo.','Sawazisha shamba na dhibiti kina cha maji; usifurikishe miche changa kupita kiasi.','Tumia mbolea kwa vipimo vinavyopendekezwa na afisa ugani.','Dhibiti magugu mapema na kagua dalili za rice blast na wadudu.','Vuna masuke yanapokomaa; kausha na hifadhi mpunga sehemu kavu.']},
+{name:'Maharage',cat:'Nafaka',img:'https://images.unsplash.com/photo-1515543904379-3d757ufe?auto=format&fit=crop&w=700&q=80',intro:'Zao la chakula lenye protini.',guide:['Panda mwanzoni mwa mvua za kutosha kwenye udongo unaopitisha maji.','Tumia mbegu safi na aina inayostahimili magonjwa ya eneo lako.','Panda kwa mistari; nafasi hutegemea aina ya maharage na mfumo wa kilimo.','Epuka maji kutuama; palilia mapema.','Kagua kutu ya maharage, anthracnose na wadudu; tumia ushauri wa mtaalamu kabla ya dawa.','Vuna maganda yanapokauka, kausha vizuri na hifadhi kwenye chombo kisichopitisha wadudu.']},
+{name:'Muhogo',cat:'Mizizi',img:'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=700&q=80',intro:'Hustahimili vipindi vya ukame baada ya kuota.',guide:['Chagua vipando kutoka mimea yenye afya isiyo na dalili za batobato.','Andaa vipando vyenye vifundo na panda kwenye matuta au vilima kulingana na udongo.','Acha nafasi ya kutosha kwa matawi na mizizi kukua; fuata aina husika.','Palilia hasa miezi ya mwanzo na ongeza mboji inapopatikana.','Kagua batobato ya muhogo na mealybug; ondoa mimea yenye maambukizi makali kwa ushauri wa ugani.','Muda wa kuvuna hutegemea aina na matumizi; chimba kwa uangalifu ili mizizi isiharibike.']},
+{name:'Viazi mviringo',cat:'Mizizi',img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=80',intro:'Zao la mizizi linalohitaji udongo tifutifu.',guide:['Tumia mbegu-viazi zilizothibitishwa na zisizo na magonjwa.','Andaa matuta kwenye udongo tifutifu wenye mboji.','Panda kwa nafasi inayoshauriwa kwa aina husika; funika viazi vizuri.','Weka mbolea kwa ushauri wa udongo na pandishia udongo mimea inapokua.','Dhibiti blight kwa kuzuia unyevunyevu mwingi na kutumia ushauri wa mtaalamu.','Vuna baada ya majani kukomaa na kukauka; kausha kivulini kabla ya kuhifadhi.']},
+{name:'Viazi vitamu',cat:'Mizizi',img:'https://images.unsplash.com/photo-1596097635121-14b63b7a0c19?auto=format&fit=crop&w=700&q=80',intro:'Hutumika kwa chakula na biashara.',guide:['Tumia vipando vyenye afya kutoka shamba lisilo na virusi.','Tengeneza matuta au vilima kulingana na udongo.','Panda vipando vilivyo na vifundo vilivyofunikwa ardhini.','Palilia mapema na dhibiti maji yasituame.','Kagua fukusi wa viazi vitamu na ondoa mizizi iliyoharibika.','Vuna kulingana na aina na ukubwa unaotakiwa sokoni.']},
+{name:'Nyanya',cat:'Mboga',img:'https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=80',intro:'Zao la mboga lenye soko lakini linahitaji uangalizi.',guide:['Tengeneza kitalu safi na tumia mbegu bora.','Hamishia miche yenye majani halisi 4–6 shambani; acha nafasi kulingana na aina.','Tumia mboji na mbolea kwa ushauri wa udongo; weka matandazo.','Mwagilia mara kwa mara bila kulowanisha majani kupita kiasi; weka fito.','Kagua bacterial wilt, early/late blight, fruit borer na whiteflies. Tambua tatizo kabla ya kutumia dawa.','Vuna matunda yaliyofikia ukubwa na rangi ya soko; shughulikia kwa uangalifu.']},
+{name:'Vitunguu',cat:'Mboga',img:'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=700&q=80',intro:'Huhitaji udongo usiotuamisha maji.',guide:['Tumia mbegu bora na kitalu kilichoandaliwa vizuri.','Pandikiza miche imara kwenye matuta yenye mifereji.','Tumia mbolea iliyopendekezwa kwa udongo wako.','Mwagilia kwa kiasi; punguza maji balbu zinapokaribia kukomaa.','Kagua thrips na magonjwa ya majani.','Vuna shingo zinapoanguka na kausha vitunguu sehemu yenye hewa kabla ya kuhifadhi.']},
+{name:'Kabichi',cat:'Mboga',img:'https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=700&q=80',intro:'Mboga ya majani inayopenda unyevunyevu wa wastani.',guide:['Tengeneza kitalu na hamishia miche yenye afya.','Panda kwa nafasi inayolingana na aina ya kabichi.','Ongeza mboji na mbolea kulingana na mahitaji ya udongo.','Mwagilia mara kwa mara na palilia.','Kagua diamondback moth, viwavi na black rot.','Vuna kichwa kinapokuwa kigumu na kufikia ukubwa wa soko.']},
+{name:'Mchicha / Sukuma wiki',cat:'Mboga',img:'https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=700&q=80',intro:'Mboga za majani zinazoweza kuvunwa kwa awamu.',guide:['Andaa matuta yenye mboji na maji ya kutosha.','Panda mbegu au miche kulingana na aina.','Punguza miche ili ipate nafasi na hewa.','Mwagilia mara kwa mara hasa wakati wa kiangazi.','Kagua viwavi, aphids na magonjwa ya majani.','Vuna majani ya nje kwa awamu au mmea mzima kulingana na aina.']},
+{name:'Karoti',cat:'Mboga',img:'https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=700&q=80',intro:'Hustawi vizuri kwenye udongo mwepesi usio na mawe.',guide:['Andaa udongo uliolegea kwa kina na ondoa mawe.','Panda mbegu moja kwa moja; usihamishe miche.','Punguza miche ili mizizi ipate nafasi.','Mwagilia kwa utaratibu ili udongo ubaki na unyevunyevu.','Dhibiti magugu na kagua wadudu.','Vuna mizizi inapofikia ukubwa wa soko.']},
+{name:'Tikiti maji',cat:'Matunda',img:'https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=700&q=80',intro:'Zao la matunda linalohitaji jua na udongo unaopitisha maji.',guide:['Chagua eneo lenye jua na udongo wenye mifereji.','Panda mbegu au miche ya aina inayofaa soko lako.','Acha nafasi ya kutosha kwa mashina kutambaa.','Mwagilia vizuri wakati wa ukuaji; punguza maji wakati wa kukomaa.','Kagua fruit fly, aphids na powdery mildew.','Dalili za ukomavu hutegemea aina; angalia mabadiliko ya kishina na sauti ya tunda pamoja na siku za aina.']},
+{name:'Ndizi',cat:'Matunda',img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=80',intro:'Zao la kudumu linalohitaji rutuba na maji.',guide:['Chagua miche safi isiyo na wadudu na magonjwa.','Panda kwenye mashimo yenye mboji na nafasi kulingana na aina.','Weka matandazo na ongeza mboji mara kwa mara.','Mwagilia wakati wa ukame; hakikisha maji hayatuami.','Ondoa machipukizi mengi na kagua banana weevil na sigatoka.','Vuna mkungu unapokomaa kwa soko husika.']},
+{name:'Parachichi',cat:'Matunda',img:'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=700&q=80',intro:'Mti wa matunda unaohitaji miche bora na mifereji.',guide:['Nunua mche uliopandikizwa kutoka kitalu kinachoaminika.','Panda kwenye udongo unaopitisha maji; epuka sehemu zinazotuamisha maji.','Tumia mboji na matandazo bila kugusa shina.','Mwagilia miche mipya kwa utaratibu.','Kagua root rot na wadudu; kata matawi yaliyokufa.','Muda wa kuzaa hutegemea aina na mche; vuna kwa viashiria vya ukomavu vya aina husika.']},
+{name:'Kuku',cat:'Mifugo',img:'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=700&q=80',intro:'Ufugaji wa mayai au nyama.',guide:['Chagua aina ya kuku kulingana na lengo: mayai au nyama.','Andaa banda lenye hewa, sakafu kavu, nafasi ya kutosha na ulinzi dhidi ya wanyama.','Nunua vifaranga kutoka chanzo kinachoaminika.','Tumia chakula sahihi kwa umri na maji safi muda wote.','Fuata ratiba ya chanjo ya daktari/afisa mifugo; tenga kuku wagonjwa.','Andika gharama, vifo, uzalishaji na mauzo kila siku.']},
+{name:'Ng’ombe',cat:'Mifugo',img:'https://images.unsplash.com/photo-1516467508483-a7212f474f2a?auto=format&fit=crop&w=700&q=80',intro:'Ufugaji wa maziwa au nyama.',guide:['Chagua aina kulingana na hali ya hewa, malisho na soko.','Jenga banda kavu lenye hewa na eneo la kutosha.','Toa malisho bora, madini na maji safi.','Panga chanjo, tiba ya minyoo na uchunguzi na daktari wa mifugo.','Fuatilia uzazi, maziwa, uzito na afya.','Tengeneza kumbukumbu za gharama na mapato.']}
 ];
 
-const animals=[
-["Kuku","https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=600","Andaa banda lenye hewa, sakafu kavu na nafasi ya kutosha. Tumia chakula kulingana na umri, maji safi na ratiba ya chanjo kutoka kwa afisa mifugo."],
-["Ng'ombe","https://images.unsplash.com/photo-1516467508483-a7212f474f2a?w=600","Toa malisho bora, maji safi, banda lenye hewa na huduma za daktari wa mifugo. Fuatilia afya, uzazi na uzalishaji."],
-["Mbuzi","https://images.unsplash.com/photo-1524024973431-2ad916746881?w=600","Jenga banda kavu, toa malisho bora na maji, fuata chanjo na tiba ya minyoo kwa ushauri wa daktari."],
-["Kondoo","https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=600","Wape malisho bora, maji safi, banda kavu na huduma za afya za mifugo."]
+const extendedInfo = {"Mahindi": {"benefits": "Hutoa chakula, malisho ya mifugo na kipato kupitia kuuza nafaka. Mabaki yanaweza kutumika kama chakula cha mifugo au kutengeneza mboji.", "risks": "Ukame wakati wa kutoa maua na kujaza punje; viwavi jeshi (fall armyworm); magonjwa ya majani na mashina; upotevu baada ya kuvuna kutokana na unyevu na sumu kuvu.", "prevention": "Panda kwa wakati unaofaa eneo lako na tumia aina zinazostahimili ukame inapohitajika. Kagua katikati ya majani mara kwa mara, ondoa magugu, hifadhi maadui wa asili na tumia viuatilifu vilivyosajiliwa kwa ushauri wa afisa ugani. Kausha nafaka vizuri kabla ya kuhifadhi.", "costs": "Gharama hutegemea ukubwa wa shamba, mbegu, maandalizi ya ardhi, mbolea, palizi, udhibiti wa wadudu, uvunaji na usafiri. Tengeneza bajeti ya eneo lako kabla ya kupanda; bei hazijawekwa hapa kwa sababu hubadilika.", "market": "Linganisha bei kwa wanunuzi, masoko ya karibu na magulio. Panga kuuza baada ya kukausha na kuchambua nafaka; hifadhi kwenye ghala kavu na safi ikiwa unasubiri bei nzuri.", "advice": "Fanya uchunguzi wa udongo ikiwezekana, tumia mbegu zinazopendekezwa kwa eneo lako na andika tarehe ya kupanda ili kupanga palizi na uvunaji."}, "Mpunga": {"benefits": "Ni chakula kikuu na zao la biashara. Mabaki ya mpunga yanaweza kutumika kama malisho au matandazo kulingana na ubora wake.", "risks": "Ukosefu au ziada ya maji, magugu, rice blast, bacterial leaf blight, panya na ndege; gharama kubwa za umwagiliaji na upotevu wakati wa ukaushaji.", "prevention": "Tumia mbegu safi, sawazisha shamba, dhibiti kina cha maji kulingana na hatua ya ukuaji, palilia mapema na kagua dalili za magonjwa. Safisha vifaa na tumia ushauri wa ugani kabla ya dawa.", "costs": "Hesabu gharama za mbegu, kitalu, maandalizi na kusawazisha shamba, maji/umwagiliaji, palizi, mbolea, uvunaji, upuraji, ukaushaji na usafiri.", "market": "Ubora, unyevu, uchafu na aina ya mpunga huathiri bei. Kausha vizuri, ondoa uchafu na linganisha bei za vyama vya wakulima, wasagishaji na wafanyabiashara.", "advice": "Chagua mfumo wa kilimo unaolingana na upatikanaji wa maji na ratiba ya skimu. Fuata kanuni za usimamizi wa maji za eneo lako."}, "Maharage": {"benefits": "Hutoa protini kwa chakula, huuzwa sokoni na husaidia kuongeza rutuba ya udongo kwa kufunga nitrojeni kupitia bakteria wa mizizi.", "risks": "Mvua nyingi na maji kutuama, ukame wakati wa maua, anthracnose, angular leaf spot, kutu, aphids na bruchids wakati wa kuhifadhi.", "prevention": "Tumia mbegu safi na zinazostahimili magonjwa ya eneo lako, badilisha mazao, epuka kupanda kwenye udongo unaotuamisha maji na hifadhi maharage yaliyokauka vizuri kwenye vyombo safi vinavyofungwa.", "costs": "Jumuisha mbegu, kulima, kupanda, palizi, mbolea au mboji, udhibiti wa magonjwa/wadudu, uvunaji, kupukuchua na kuhifadhi.", "market": "Panga maharage kwa aina na ubora, kausha vizuri na linganisha bei kwa wanunuzi wa jumla, masoko na vikundi vya wakulima.", "advice": "Usipande mbegu zenye madoa au zilizoharibika. Zungumza na afisa ugani kuhusu aina inayofaa msimu na eneo lako."}, "Muhogo": {"benefits": "Ni chakula kinachoweza kuvumilia vipindi vya ukame baada ya kujiimarisha; mizizi na majani hutumika kwa chakula au biashara kulingana na aina na usalama wa maandalizi.", "risks": "Batobato ya muhogo, michirizi ya kahawia, mealybug, green mite, panya na wizi; maji kutuama na kuchelewa kusindika baada ya kuvuna.", "prevention": "Tumia vipando safi kutoka mashamba yenye afya, chagua aina zinazostahimili magonjwa, kagua shamba na ondoa mimea iliyoathirika kwa mwongozo wa ugani. Hakikisha mifereji inapitisha maji.", "costs": "Hesabu vipando, maandalizi ya shamba, kupanda, palizi, udhibiti wa wadudu, kuvuna, kubeba na gharama za kuchakata.", "market": "Soko linaweza kuwa la mizizi mibichi, unga au chipsi. Panga mnunuzi na usafirishaji mapema kwa sababu mizizi mibichi huharibika haraka baada ya kuvunwa.", "advice": "Chagua aina kulingana na matumizi ya chakula au biashara. Baadhi ya aina zina viwango vya cyanide vinavyohitaji usindikaji sahihi; usile muhogo mchungu bila kuandaliwa ipasavyo."}, "Viazi mviringo": {"benefits": "Hutoa chakula na kipato; zao linaweza kuleta mapato kwa muda mfupi kulingana na aina na mazingira.", "risks": "Late blight/early blight, bacterial wilt, minyoo fundo, viwavi na wadudu wa ardhini; mvua nyingi, ukame na mbegu-viazi zenye maambukizi.", "prevention": "Tumia mbegu-viazi zilizothibitishwa, badilisha mazao, panda kwenye udongo unaopitisha maji, pandishia udongo na kagua majani mara kwa mara. Usitumie dawa bila kutambua tatizo.", "costs": "Jumuisha mbegu-viazi, maandalizi ya matuta, mbolea, kazi ya kupanda na kupandishia, palizi, kinga ya magonjwa, uvunaji, vifungashio na usafiri.", "market": "Panga ukubwa na ubora, epuka kujeruhi viazi na hifadhi sehemu yenye ubaridi, giza na hewa. Linganisha bei kabla ya kuvuna kwa wingi.", "advice": "Muda wa kupanda na aina hutegemea mwinuko, joto na msimu. Pata ushauri wa afisa ugani wa eneo lako kuhusu blight na ratiba ya kinga."}, "Viazi vitamu": {"benefits": "Ni chakula chenye wanga; aina zenye rangi ya chungwa zinaweza kutoa beta-carotene. Majani pia yanaweza kutumika kama mboga au malisho yanayofaa.", "risks": "Fukusi wa viazi vitamu, virusi, panya, ukame wakati wa kuanzisha mimea na kupasuka/kuharibika kwa mizizi.", "prevention": "Tumia vipando safi, badilisha mazao, pandia matuta, funika mizizi isiachwe wazi na vuna kwa wakati. Ondoa mimea yenye dalili za virusi.", "costs": "Hesabu vipando, maandalizi ya matuta, palizi, umwagiliaji pale unapohitajika, udhibiti wa fukusi, uvunaji na usafiri.", "market": "Panga mizizi kwa ukubwa na ubora; epuka michubuko na uza mapema au hifadhi kwa muda mfupi sehemu yenye hewa.", "advice": "Chagua aina kulingana na soko na matumizi ya nyumbani. Kagua shamba mara kwa mara hasa karibu na kuvuna."}, "Nyanya": {"benefits": "Ina soko la matumizi ya nyumbani, migahawa na wasindikaji; inaweza kuleta mapato mazuri ikiwa uzalishaji na soko vimepangwa.", "risks": "Bacterial wilt, early/late blight, tomato leaf miner (Tuta absoluta), fruit borer, whiteflies, virusi, kupasuka kwa matunda na kushuka kwa bei wakati wa mavuno mengi.", "prevention": "Tumia miche na mbegu safi, badilisha mazao, weka mifereji, epuka kulowanisha majani, tumia mitego na ukaguzi wa mara kwa mara. Ondoa sehemu zilizoathirika na tumia viuatilifu vilivyosajiliwa kwa ushauri wa mtaalamu; zingatia muda wa kusubiri kabla ya kuvuna.", "costs": "Jumuisha kitalu, mbegu, matuta, fito/kamba, mbolea, umwagiliaji, kazi, udhibiti wa wadudu/magonjwa, vifungashio na usafiri.", "market": "Tafuta wanunuzi kabla ya kupanda, panga uvunaji kwa awamu, chagua matunda bila majeraha na linganisha bei za masoko mbalimbali.", "advice": "Nyanya ni zao linalohitaji ufuatiliaji wa karibu. Usitumie dawa kwa mazoea; tambua tatizo kwanza na heshimu maelekezo ya lebo."}, "Vitunguu": {"benefits": "Hutumika sana kwenye chakula na yanaweza kuhifadhiwa baada ya kukaushwa vizuri, hivyo kuruhusu kupanga mauzo.", "risks": "Thrips, downy mildew, purple blotch, kuoza kwa mizizi/balbu, maji mengi na upotevu wakati wa ukaushaji au uhifadhi.", "prevention": "Tumia mbegu/miche safi, panda kwenye matuta yenye mifereji, badilisha mazao, dhibiti magugu na epuka umwagiliaji kupita kiasi. Kausha balbu vizuri kabla ya kuhifadhi.", "costs": "Hesabu mbegu, kitalu, kazi ya kupandikiza, mbolea, maji, palizi, udhibiti wa thrips/magonjwa, uvunaji, ukaushaji na mifuko.", "market": "Panga balbu kwa ukubwa na ubora. Hifadhi sehemu kavu yenye hewa na linganisha bei kabla ya kuuza.", "advice": "Punguza umwagiliaji balbu zinapokaribia kukomaa, lakini usisababishe mimea kunyauka sana. Fuata ushauri wa eneo lako kuhusu aina na msimu."}, "Kabichi": {"benefits": "Ni mboga yenye soko la rejareja na jumla; inaweza kupandwa kwa awamu ili kusambaza mavuno.", "risks": "Diamondback moth, viwavi, aphids, black rot, clubroot, kuoza kwa vichwa na kushuka kwa bei wakati wa mavuno mengi.", "prevention": "Tumia miche safi, badilisha mazao, ondoa mabaki yaliyoathirika, dhibiti magugu na kagua majani hasa upande wa chini. Tumia njia jumuishi za udhibiti wa wadudu.", "costs": "Jumuisha mbegu, kitalu, maandalizi ya shamba, mbolea/mboji, maji, palizi, udhibiti wa wadudu, uvunaji na usafiri.", "market": "Vuna vichwa vilivyoshikana na visivyo na uharibifu. Panga usafirishaji haraka na tafuta wanunuzi wa karibu ili kupunguza gharama.", "advice": "Acha nafasi inayofaa aina ili vichwa vikue na hewa ipite. Epuka kupanda kabichi mfululizo sehemu ileile."}, "Mchicha / Sukuma wiki": {"benefits": "Hutoa mboga kwa kaya na soko; sukuma wiki inaweza kuvunwa majani kwa awamu na kutoa mapato ya mara kwa mara.", "risks": "Aphids, viwavi, flea beetles, magonjwa ya majani, joto/ukame, maji machafu na uchafuzi wa mboga.", "prevention": "Tumia maji safi, mboji iliyooza vizuri, palilia, kagua majani na ondoa majani yenye ugonjwa. Tumia udhibiti salama wa wadudu na zingatia muda wa kusubiri baada ya dawa.", "costs": "Hesabu mbegu, matuta, mboji/mbolea, maji, kazi ya palizi na uvunaji, vifungashio na usafiri. Gharama hutegemea idadi ya mizunguko ya uvunaji.", "market": "Vuna asubuhi au wakati wa baridi, weka kivulini na peleka sokoni haraka. Safisha kwa maji salama na panga majani kwa ubora.", "advice": "Panga upandaji kwa awamu ili usivune mazao yote siku moja. Usitumie maji yasiyo salama kwenye mboga zinazoliwa zikiwa mbichi."}, "Karoti": {"benefits": "Hutumika kama mboga na kwenye juisi; inaweza kuhifadhiwa kwa muda ikiwa imevunwa na kutunzwa vizuri.", "risks": "Udongo wenye mawe au mgumu husababisha mizizi kupinda; pia kuna hatari ya magonjwa ya majani/mizizi, wadudu, ukame usio sawa na kupasuka kwa mizizi.", "prevention": "Andaa udongo laini kwa kina, ondoa mawe, panda moja kwa moja, punguza miche na weka unyevunyevu wa wastani usiobadilika sana.", "costs": "Jumuisha mbegu, maandalizi ya udongo, mboji/mbolea, palizi, umwagiliaji, uvunaji, kuosha/kupanga na usafiri.", "market": "Panga karoti kwa ukubwa, ondoa zilizopasuka au kuoza na zihifadhi sehemu yenye ubaridi. Linganisha mahitaji ya soko kabla ya kupanda eneo kubwa.", "advice": "Usitumie samadi mbichi karibu na kupanda. Udongo uliolegea na umwagiliaji wa wastani husaidia kupata mizizi yenye umbo zuri."}, "Tikiti maji": {"benefits": "Ni tunda lenye mahitaji ya soko wakati wa joto; linaweza kutoa mapato kwa msimu mmoja ikiwa soko na maji vimepangwa.", "risks": "Fruit fly, aphids, powdery/downy mildew, fusarium wilt, uchavushaji duni, ukame au maji mengi na kuporomoka kwa bei.", "prevention": "Tumia mbegu bora, badilisha mazao, dhibiti magugu, kagua matunda na majani, tumia mitego ya fruit fly na epuka kujeruhi matunda. Mwagilia kwa utaratibu.", "costs": "Hesabu mbegu, maandalizi ya shamba, matuta, mboji/mbolea, umwagiliaji, udhibiti wa wadudu/magonjwa, uvunaji na usafiri.", "market": "Tafuta wanunuzi na panga usafiri kwa sababu matunda ni mazito na yanaweza kuharibika. Vuna kwa viashiria vya ukomavu vya aina husika.", "advice": "Usiamue ukomavu kwa kugonga tunda pekee; tumia siku tangu kupanda, kishina, sehemu ya chini ya tunda na maelekezo ya aina."}, "Ndizi": {"benefits": "Hutoa chakula na mapato ya muda mrefu; mashina na majani yanaweza kutumika kama mabaki ya shamba au malisho yanayofaa.", "risks": "Banana weevil, nematodes, black sigatoka, bacterial wilt, ukame, upepo mkali na upungufu wa rutuba.", "prevention": "Tumia miche safi, ondoa mimea iliyoathirika kwa mwongozo wa ugani, safisha zana, weka matandazo, boresha mifereji na dhibiti machipukizi kwa idadi inayofaa.", "costs": "Hesabu miche, mashimo, mboji, mbolea, maji, palizi, kazi ya kuondoa machipukizi, udhibiti wa magonjwa na usafirishaji wa mikungu.", "market": "Panga mikungu kwa ukubwa na ukomavu, epuka kuangusha au kujeruhi na tafuta wanunuzi wa karibu au wasafirishaji.", "advice": "Chagua aina inayofaa matumizi na eneo. Endelea kurudisha mabaki yenye afya shambani kama matandazo na fuatilia afya ya shina."}, "Parachichi": {"benefits": "Lina soko la ndani na nje kulingana na aina na ubora; mti unaweza kuendelea kuzaa kwa miaka mingi ukitunzwa.", "risks": "Phytophthora root rot, anthracnose, fruit fly, ukame, maji kutuama, upepo na matunda kuanguka au kujeruhiwa.", "prevention": "Nunua miche iliyopandikizwa kutoka kitalu kinachoaminika, panda sehemu yenye mifereji mizuri, tumia matandazo bila kugusa shina, kata matawi yaliyoathirika na fuata ushauri wa ugani.", "costs": "Hesabu miche, mashimo, mboji, umwagiliaji wa miaka ya mwanzo, mbolea, palizi, kupogoa, udhibiti wa magonjwa, uvunaji, upangaji na vifungashio.", "market": "Chagua aina inayotakiwa na wanunuzi, zingatia ukubwa na ukomavu, epuka michubuko na panga usafiri. Thibitisha viwango vya mnunuzi kabla ya kuvuna.", "advice": "Parachichi halipendi maji kutuama. Hakikisha eneo, aina na miche vimechaguliwa vizuri kabla ya kuwekeza."}, "Kuku": {"benefits": "Mayai na nyama vinaweza kuleta kipato; samadi inaweza kutumika shambani baada ya kuoza vizuri.", "risks": "Newcastle, Gumboro, coccidiosis, mafua ya ndege, minyoo, vifo vya vifaranga, joto kali, msongamano, chakula ghali na mabadiliko ya bei ya mayai/nyama.", "prevention": "Nunua vifaranga kutoka chanzo kinachoaminika, fuata ratiba ya chanjo ya daktari/afisa mifugo, weka banda kavu lenye hewa, maji safi, chakula sahihi, usafi na udhibiti wa wageni/panya. Tenga wagonjwa na ripoti vifo visivyo vya kawaida.", "costs": "Hesabu banda, vifaranga, chakula, chanjo/tiba, vyombo, maji/umeme, maranda, kazi, usafiri na gharama za vifo. Chakula mara nyingi ni sehemu kubwa ya gharama.", "market": "Tafuta wateja wa mayai au kuku kabla ya kuongeza idadi. Rekodi uzalishaji, vifo, chakula kilichotumika na mauzo ili kujua faida halisi.", "advice": "Usichanganye kuku wa umri tofauti bila mpango wa biosecurity. Kwa dalili za ugonjwa au vifo vya ghafla, wasiliana na daktari wa mifugo mara moja."}, "Ng’ombe": {"benefits": "Hutoa maziwa, nyama, ndama na samadi; wanaweza kuwa chanzo cha kipato na akiba ya kaya.", "risks": "Mastitis, ndigana/kupe, minyoo, magonjwa ya mlipuko, utapiamlo, ukosefu wa maji/malisho, matatizo ya uzazi na mabadiliko ya bei ya maziwa au nyama.", "prevention": "Chanjo na tiba zifanywe kwa ratiba ya daktari/afisa mifugo, dhibiti kupe, toa maji na lishe ya kutosha, safisha banda na vyombo vya kukamulia, tenga mnyama mgonjwa na weka kumbukumbu za afya.", "costs": "Hesabu ununuzi wa mnyama, banda, malisho, maji, madini, chanjo/tiba, kazi, uzalishaji wa malisho, usafiri na gharama za uzazi.", "market": "Kwa maziwa, zingatia usafi, kuchuja na kupooza haraka. Kwa nyama au mifugo hai, linganisha wanunuzi na zingatia taratibu za afya na usafirishaji.", "advice": "Chagua aina inayolingana na hali ya hewa, malisho na uwezo wa gharama. Pima uzalishaji na gharama kwa kila mnyama ili kutambua faida."}};
+let filter='Zote';
+function setFilter(v,b){filter=v;document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function render(){let q=document.getElementById('search').value.toLowerCase();let items=data.filter(x=>(filter==='Zote'||x.cat===filter)&&(x.name.toLowerCase().includes(q)||x.intro.toLowerCase().includes(q)));document.getElementById('cards').innerHTML=items.map(x=>`<article class="card" onclick="openGuide('${x.name.replace(/'/g,"\\'")}')"><img loading="lazy" src="${x.img}" alt="${x.name}" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80'"><div class="card-body"><h3>${x.name}</h3><p>${x.intro}</p><button class="action" type="button">Fungua mwongozo</button></div></article>`).join('')||'<p>Hakuna matokeo. Jaribu jina jingine.</p>'}
+function openGuide(name){
+ let x=data.find(a=>a.name===name);if(!x)return;
+ let e=extendedInfo[x.name]||{};
+ let box=document.getElementById('details');box.style.display='block';
+ const section=(title,body)=>body?`<h3>${title}</h3><p>${body}</p>`:'';
+ box.innerHTML=`<div class="detail-content">
+ <h3>🌿 Mwongozo wa ${x.name}</h3><p>${x.intro}</p>
+ <h3>Hatua za uzalishaji / ufugaji</h3><ol>${x.guide.map(s=>`<li>${s}</li>`).join('')}</ol>
+ ${section('Faida',e.benefits)}
+ ${section('Vihatarishi na changamoto',e.risks)}
+ ${section('Namna ya kuzuia na kupunguza vihatarishi',e.prevention)}
+ ${section('Gharama za kuzingatia',e.costs)}
+ ${section('Masoko na uuzaji',e.market)}
+ ${section('Ushauri wa kitaalamu',e.advice)}
+ <p class="notice">Tahadhari: Gharama, mavuno, bei, magonjwa na mapendekezo ya pembejeo hutofautiana kwa nchi, eneo, msimu na aina. Haya ni maelezo ya jumla, si bei za sasa wala utambuzi wa kitaalamu. Thibitisha taarifa za eneo lako kwa afisa ugani au daktari wa mifugo kabla ya kutumia dawa au kufanya uwekezaji mkubwa.</p>
+ <button class="action" onclick="askAbout('${x.name.replace(/'/g,"\\'")}')">Uliza swali kuhusu ${x.name}</button>
+ </div>`;
+ box.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function addMsg(t,who){let d=document.createElement('div');d.className='msg '+who;d.textContent=t;let l=document.getElementById('chatlog');l.appendChild(d);l.scrollTop=l.scrollHeight}
+function askAbout(n){document.getElementById('question').value='Nipe ushauri zaidi kuhusu '+n;document.getElementById('msaidizi').scrollIntoView({behavior:'smooth'});ask()}
+function ask(){let el=document.getElementById('question'),q=el.value.trim();if(!q)return;addMsg(q,'user');el.value='';let found=data.find(x=>q.toLowerCase().includes(x.name.toLowerCase()));let answer;if(found){answer='Mwongozo wa '+found.name+':\n'+found.guide.map((s,i)=>(i+1)+'. '+s).join('\n')+'\n\nKwa ushauri unaolingana na shamba lako, taja nchi, mkoa/wilaya, aina ya udongo na msimu.'}else{answer='Nimepokea swali lako. Ili nikuelekeze vizuri, taja zao au mnyama, nchi na eneo (mkoa/wilaya), pamoja na tatizo unaloliona. Kwa sasa majibu haya yanatokana na mwongozo wa msingi uliowekwa ndani ya tovuti; Gemini AI bado haijaunganishwa.'}setTimeout(()=>addMsg(answer,'bot'),250)}
+const slides=[
+"url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85')",
+"url('https://images.unsplash.com/photo-1499529112087-3cb3b73 Like?auto=format&fit=crop&w=1600&q=85')",
+"url('https://images.unsplash.com/photo-1523742812378-1d9f2b9b8f?auto=format&fit=crop&w=1600&q=85')"
 ];
+let slide=0;setInterval(()=>{slide=(slide+1)%3;let hero=document.getElementById('hero');let urls=[ 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85','https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85','https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85'];let im=new Image();im.onload=()=>hero.style.backgroundImage=`linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.15)),url('${urls[slide]}')`;im.src=urls[slide]},5000);
 
-function showCrops(){
-let q=document.getElementById("search").value.toLowerCase();
-document.getElementById("cropList").innerHTML=crops.filter(c=>c[0].toLowerCase().includes(q)).map(c=>`
-<div class="card" onclick="cropGuide('${c[0]}')">
-<img src="${c[2]}" alt="${c[0]}" onerror="this.style.display='none'">
-<div><h3>${c[0]}</h3><p>${c[1]}</p><button>Fungua mwongozo</button></div>
-</div>`).join("");
-}
-
-function cropGuide(name){
-let c=crops.find(x=>x[0]===name);
-let box=document.getElementById("cropDetails");
-box.hidden=false;
-box.innerHTML="<h2>🌱 Mwongozo wa "+c[0]+"</h2><p>"+c[3]+"</p><p>Mahitaji ya mbolea, nafasi na muda wa kuvuna hutegemea aina ya zao, udongo na eneo. Pata ushauri wa afisa ugani wa eneo lako.</p>";
-box.scrollIntoView({behavior:"smooth"});
-}
-
-document.getElementById("animalList").innerHTML=animals.map(a=>`
-<div class="card" onclick="animalGuide('${a[0]}')">
-<img src="${a[1]}" alt="${a[0]}" onerror="this.style.display='none'">
-<div><h3>${a[0]}</h3><button>Fungua mwongozo</button></div>
-</div>`).join("");
-
-function animalGuide(name){
-let a=animals.find(x=>x[0]===name);
-let box=document.getElementById("animalDetails");
-box.hidden=false;
-box.innerHTML="<h2>🐄 Ufugaji wa "+a[0]+"</h2><p>"+a[2]+"</p>";
-box.scrollIntoView({behavior:"smooth"});
-}
-
-/* Usajili na kuhifadhi eneo la mtumiaji */
-document.getElementById("registration").addEventListener("submit",function(e){
-e.preventDefault();
-let profile={
-name:document.getElementById("name").value.trim(),
-country:document.getElementById("country").value,
-region:document.getElementById("region").value.trim(),
-district:document.getElementById("district").value.trim()
-};
-localStorage.setItem("kilimoAIprofile",JSON.stringify(profile));
-document.getElementById("weatherLocation").value=
-[profile.district,profile.region,profile.country].filter(Boolean).join(", ");
-document.getElementById("registerStatus").textContent=
-"Asante "+profile.name+". Taarifa zako zimehifadhiwa. Eneo: "+profile.region+", "+profile.country;
-});
-
+const PROFILE_KEY='kilimo_ai_profile_v1';
 function loadProfile(){
-let p=JSON.parse(localStorage.getItem("kilimoAIprofile")||"null");
-if(p){
-document.getElementById("name").value=p.name;
-document.getElementById("country").value=p.country;
-document.getElementById("region").value=p.region;
-document.getElementById("district").value=p.district;
-document.getElementById("weatherLocation").value=
-[p.district,p.region,p.country].filter(Boolean).join(", ");
+ try{
+  const p=JSON.parse(localStorage.getItem(PROFILE_KEY)||'null');
+  if(!p)return;
+  document.getElementById('regName').value=p.name||'';
+  document.getElementById('regCountry').value=p.country||'Tanzania';
+  document.getElementById('regRegion').value=p.region||'';
+  document.getElementById('regDistrict').value=p.district||'';
+  document.getElementById('weatherPlace').value=[p.district,p.region,p.country].filter(Boolean).join(', ');
+  document.getElementById('regStatus').textContent='Taarifa zako zimehifadhiwa kwenye kifaa hiki. Eneo: '+[p.district,p.region,p.country].filter(Boolean).join(', ');
+ }catch(e){}
 }
-}
-
+document.getElementById('registerForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const profile={
+  name:document.getElementById('regName').value.trim(),
+  country:document.getElementById('regCountry').value,
+  region:document.getElementById('regRegion').value.trim(),
+  district:document.getElementById('regDistrict').value.trim()
+ };
+ if(!profile.name||!profile.region){document.getElementById('regStatus').textContent='Tafadhali jaza jina na mkoa/eneo.';return;}
+ localStorage.setItem(PROFILE_KEY,JSON.stringify(profile));
+ document.getElementById('weatherPlace').value=[profile.district,profile.region,profile.country].filter(Boolean).join(', ');
+ document.getElementById('regStatus').textContent='Umejisajili kwa mafanikio kwenye kifaa hiki. Eneo lako: '+[profile.district,profile.region,profile.country].filter(Boolean).join(', ');
+});
 async function getWeather(){
-let place=document.getElementById("weatherLocation").value.trim();
-let result=document.getElementById("weatherResult");
-if(!place){result.textContent="Jisajili na ujaze mkoa wako kwanza.";return;}
-result.textContent="Inatafuta hali ya hewa...";
-try{
-let g=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(place)+"&count=1&language=sw&format=json");
-let gd=await g.json();
-if(!gd.results||!gd.results.length){result.textContent="Eneo halijapatikana. Jaribu jina la mji au mkoa.";return;}
-let loc=gd.results[0];
-let url="https://api.open-meteo.com/v1/forecast?latitude="+loc.latitude+"&longitude="+loc.longitude+"&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=3";
-let r=await fetch(url);
-let w=await r.json();
-let c=w.current,d=w.daily;
-let codes={0:"Anga safi",1:"Karibu safi",2:"Mawingu kiasi",3:"Mawingu mengi",45:"Ukungu",51:"Manyunyu",53:"Manyunyu",55:"Manyunyu makali",61:"Mvua nyepesi",63:"Mvua ya wastani",65:"Mvua kubwa",80:"Manyunyu",81:"Mvua",82:"Mvua kubwa",95:"Ngurumo na radi"};
-let html="<h3>"+loc.name+", "+(loc.country||"")+"</h3>";
-html+="<p><b>Hali ya sasa:</b> "+(codes[c.weather_code]||"Hali imechanganyika")+" · "+Math.round(c.temperature_2m)+"°C</p>";
-html+="<p>Unyevunyevu: "+c.relative_humidity_2m+"% · Upepo: "+c.wind_speed_10m+" km/h</p><h3>Utabiri wa siku 3</h3>";
-for(let i=0;i<d.time.length;i++){
-html+="<p>"+d.time[i]+": "+Math.round(d.temperature_2m_min[i])+"°C hadi "+Math.round(d.temperature_2m_max[i])+"°C. Uwezekano wa mvua: "+d.precipitation_probability_max[i]+"%</p>";
+ const box=document.getElementById('weatherResult');
+ const profile=JSON.parse(localStorage.getItem(PROFILE_KEY)||'null');
+ let place=document.getElementById('weatherPlace').value.trim();
+ if(!place&&profile)place=[profile.district,profile.region,profile.country].filter(Boolean).join(', ');
+ if(!place){box.textContent='Jaza mkoa wako kwenye sehemu ya usajili kwanza.';return;}
+ box.textContent='Inatafuta taarifa za hali ya hewa...';
+ try{
+  const geoUrl='https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(place)+'&count=1&language=sw&format=json';
+  const gr=await fetch(geoUrl);
+  if(!gr.ok)throw new Error('Imeshindikana kutafuta eneo.');
+  const gd=await gr.json();
+  if(!gd.results||!gd.results.length){box.textContent='Eneo halijapatikana. Jaribu kuandika jina la mkoa au mji kwa herufi za kawaida.';return;}
+  const loc=gd.results[0];
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=3`;
+  const wr=await fetch(url);
+  if(!wr.ok)throw new Error('Imeshindikana kupata utabiri.');
+  const w=await wr.json(),c=w.current,d=w.daily;
+  const codes={0:'Anga safi',1:'Karibu safi',2:'Mawingu kiasi',3:'Mawingu mengi',45:'Ukungu',48:'Ukungu mzito',51:'Manyunyu mepesi',53:'Manyunyu',55:'Manyunyu makali',61:'Mvua nyepesi',63:'Mvua ya wastani',65:'Mvua kubwa',71:'Theluji nyepesi',73:'Theluji',75:'Theluji kubwa',80:'Manyunyu ya muda',81:'Mvua ya muda',82:'Mvua kubwa ya muda',95:'Ngurumo na radi',96:'Mvua ya radi na mvua ya mawe',99:'Mvua kali ya radi'};
+  const dateLabel=i=>new Date(d.time[i]+'T12:00:00').toLocaleDateString('sw-TZ',{weekday:'long',day:'numeric',month:'short'});
+  box.innerHTML=`<h3>${loc.name}${loc.admin1?', '+loc.admin1:''}${loc.country?', '+loc.country:''}</h3>
+  <p><strong>Hali ya sasa:</strong> ${codes[c.weather_code]||'Hali imechanganyika'} · <strong>${Math.round(c.temperature_2m)}°C</strong></p>
+  <p>Unyevunyevu: ${c.relative_humidity_2m}% · Upepo: ${c.wind_speed_10m} km/h · Mvua ya sasa: ${c.precipitation} mm</p>
+  <h4>Utabiri wa siku 3</h4>
+  <div class="tools">${d.time.map((t,i)=>`<div class="panel"><strong>${dateLabel(i)}</strong><br>${Math.round(d.temperature_2m_min[i])}°C – ${Math.round(d.temperature_2m_max[i])}°C<br>Uwezekano wa mvua: ${d.precipitation_probability_max[i]}%</div>`).join('')}</div>
+  <p class="muted">Chanzo: Open-Meteo · Saa za eneo husika.</p>
+  <p><strong>Ushauri:</strong> Ikiwa uwezekano wa mvua ni mkubwa, hakikisha mifereji inapitisha maji na epuka kunyunyizia dawa kabla ya mvua. Ikiwa mvua haitarajiwi, panga umwagiliaji kulingana na unyevunyevu wa udongo na mahitaji ya zao.</p>
+   <h4>Faida ya kufuatilia hali ya hewa</h4><p>Kukusaidia kupanga muda wa kupanda, kumwagilia, kuweka mbolea, kunyunyizia dawa, kuvuna na kusafirisha mazao.</p>
+   <h4>Vihatarishi vya hali ya hewa</h4><p>Ukame unaweza kusababisha miche kunyauka na kupunguza mavuno; mvua kubwa inaweza kusababisha mafuriko, mmomonyoko na kuoza kwa mizizi; upepo mkali unaweza kulaza mimea na kuharibu mabanda; joto kali linaweza kuongeza msongo kwa mimea na mifugo.</p>
+   <h4>Hatua za kujikinga</h4><p>Safisha mifereji, hifadhi maji, tumia matandazo, panga umwagiliaji, linda mifugo dhidi ya joto na upepo, na fuatilia utabiri mara kwa mara. Utabiri si uhakika wa hali itakayotokea shambani.</p>`;
+ }catch(err){box.textContent='Imeshindikana kupata hali ya hewa kwa sasa. Hakikisha intaneti ipo na ujaribu tena. '+err.message;}
 }
-html+="<small>Chanzo: Open-Meteo</small>";
-result.innerHTML=html;
-}catch(e){result.textContent="Imeshindikana kupata hali ya hewa. Hakikisha intaneti ipo na ujaribu tena.";}
-}
-
-function askQuestion(){
-let input=document.getElementById("question");
-let q=input.value.trim();
-if(!q)return;
-let chat=document.getElementById("chat");
-let u=document.createElement("div");
-u.className="message user";
-u.textContent=q;
-chat.appendChild(u);
-let answer="Tafadhali taja zao au mnyama, nchi, mkoa na tatizo unalopata ili upate mwongozo unaofaa.";
-let match=crops.find(c=>q.toLowerCase().includes(c[0].toLowerCase()));
-if(match)answer="Mwongozo wa "+match[0]+": "+match[3];
-let animal=animals.find(a=>q.toLowerCase().includes(a[0].toLowerCase()));
-if(animal)answer="Mwongozo wa "+animal[0]+": "+animal[2];
-let b=document.createElement("div");
-b.className="message";
-b.textContent=answer;
-chat.appendChild(b);
-chat.scrollTop=chat.scrollHeight;
-input.value="";
-}
-
-/* Picha ya mwanzo hubadilika kila sekunde 5 */
-const heroPhotos=[
-"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400",
-"https://images.unsplash.com/photo-1499529112087-3cb3b73?auto=format&fit=crop&w=1400",
-"https://images.unsplash.com/photo-1523742812378-1d9f2b9b8f?auto=format&fit=crop&w=1400"
-];
-let photoIndex=0;
-setInterval(()=>{
-photoIndex=(photoIndex+1)%heroPhotos.length;
-document.getElementById("hero").style.backgroundImage=
-"linear-gradient(#0007,#0007),url('"+heroPhotos[photoIndex]+"')";
-},5000);
-
 loadProfile();
-showCrops();
-</script>
-</body>
-</html>
+
+render();
+</script></body></html>
