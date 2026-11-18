@@ -4,69 +4,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kilimo AI Tanzania</title>
+<title>Kilimo AI - Smart Farming</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#f1f8f0;color:#183b27}
-header{background:#14532d;color:white;text-align:center;padding:25px}
-.hero{padding:65px 20px;color:white;background:linear-gradient(#0005,#0008),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200');background-size:cover;background-position:center}
-main{padding:18px;max-width:750px;margin:auto}
-.card{background:white;padding:20px;margin:15px 0;border-radius:14px}
-button{background:#15803d;color:white;border:0;padding:14px;border-radius:8px;width:100%;font-size:16px}
-textarea,input,select{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #ccc;border-radius:8px}
-img{width:100%;border-radius:10px}
-footer{background:#14532d;color:white;padding:25px;text-align:center}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8f2;color:#20352a}
+header{background:#14532d;color:white;padding:20px}
+header h1{font-size:25px}
+header p{margin-top:7px;font-size:13px}
+nav{display:flex;gap:8px;overflow:auto;padding:12px;background:white}
+nav button{border:0;background:#e5f3e8;padding:11px;border-radius:8px;white-space:nowrap}
+main{max-width:850px;margin:auto;padding:15px}
+.card{background:white;padding:17px;border-radius:13px;margin-bottom:15px;box-shadow:0 2px 8px #0001}
+h2{font-size:19px;margin-bottom:12px;color:#14532d}
+.hero{width:100%;height:190px;object-fit:cover;border-radius:10px}
+input,textarea,select{width:100%;padding:13px;margin:7px 0;border:1px solid #ccc;border-radius:8px;font-size:15px}
+button.primary{background:#15803d;color:white;border:0;padding:13px;border-radius:8px;width:100%;font-size:15px;font-weight:bold}
+button:disabled{opacity:.5}
+#answer{white-space:pre-wrap;line-height:1.7;margin-top:15px}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photos img{width:100%;height:125px;object-fit:cover;border-radius:9px}
+.small{font-size:12px;color:#64748b}
+.price{font-size:27px;font-weight:bold;color:#15803d;margin:10px 0}
+footer{text-align:center;padding:25px;color:#64748b;font-size:12px}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>🌱 KILIMO AI</h1>
-<p>Mshauri wako wa kilimo na ufugaji</p>
+<p>Mshauri wako wa kilimo na ufugaji kwa kutumia Artificial Intelligence</p>
 </header>
-<section class="hero">
-<h2>Karibu Kilimo AI</h2>
-<p>Jifunze kilimo bora kwa kutumia akili bandia.</p>
-</section>
+
+<nav>
+<button onclick="showSection('home')">Nyumbani</button>
+<button onclick="showSection('ai')">Uliza AI</button>
+<button onclick="showSection('crops')">Mazao</button>
+<button onclick="showSection('livestock')">Mifugo</button>
+<button onclick="showSection('premium')">Premium</button>
+</nav>
+
 <main>
+
+<section id="home">
+<div class="card">
+<img class="hero" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1000" alt="Shamba halisi">
+<h2 style="margin-top:15px">Karibu Kilimo AI</h2>
+<p>Pata ushauri wa kitaalamu kuhusu kilimo, mifugo, magonjwa ya mimea na ufugaji.</p>
+<br>
+<button class="primary" onclick="showSection('ai')">Anza kuuliza AI</button>
+</div>
+
+<div class="card">
+<h2>🌿 Kilimo cha kisasa</h2>
+<div class="photos">
+<img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=500" alt="Mazao shambani">
+<img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=500" alt="Mkulima shambani">
+<img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=500" alt="Mimea">
+<img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=500" alt="Shamba">
+</div>
+</div>
+
+<div class="card">
+<h2>🐄 Ufugaji bora</h2>
+<div class="photos">
+<img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=500" alt="Ng'ombe">
+<img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500" alt="Kuku">
+</div>
+</div>
+</section>
+
+<section id="ai" hidden>
 <div class="card">
 <h2>🤖 Uliza Kilimo AI</h2>
-<select id="category">
-<option>Kilimo</option>
-<option>Ufugaji</option>
-<option>Magonjwa ya mimea</option>
-<option>Mbolea</option>
-<option>Umwagiliaji</option>
-</select>
-<textarea id="question" placeholder="Andika swali lako hapa..."></textarea>
+<p>Uliza swali lolote kuhusu kilimo au ufugaji.</p>
+
+<textarea id="question" rows="4" placeholder="Mfano: Majani ya nyanya yangu yanabadilika rangi na kukunjamana. Nifanye nini?"></textarea>
+
+<label>📷 Tuma picha ya mmea au mnyama (hiari)</label>
 <input type="file" id="photo" accept="image/*">
-<button onclick="askAI()">Tuma swali</button>
-<h3>Jibu:</h3>
-<p id="answer">Majibu yako yataonekana hapa.</p>
+
+<button class="primary" id="askBtn" onclick="askAI()">TUMA SWALI KWA AI</button>
+
+<div id="status"></div>
+<div id="answer"></div>
 </div>
+</section>
+
+<section id="crops" hidden>
 <div class="card">
-<h2>🌾 Mazao</h2>
-<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700" alt="Shamba halisi">
-<p>Jifunze kuhusu mazao na mbinu bora za kilimo.</p>
+<h2>🌱 Kilimo cha mazao</h2>
+<p>Pata ushauri wa mahindi, mpunga, maharage, nyanya, vitunguu, kahawa na mazao mengine.</p>
+<br>
+<button class="primary" onclick="askAbout('Nipe mwongozo wa kitaalamu wa kulima nyanya kuanzia maandalizi ya shamba hadi kuvuna.')">Jifunze kulima nyanya</button>
 </div>
+</section>
+
+<section id="livestock" hidden>
 <div class="card">
-<h2>🐄 Ufugaji</h2>
-<img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=700" alt="Mifugo">
-<p>Jifunze kuhusu ufugaji wa kisasa.</p>
+<h2>🐄 Ufugaji wa mifugo</h2>
+<p>Pata ushauri wa ng'ombe, mbuzi, kondoo, kuku, bata na samaki.</p>
+<br>
+<button class="primary" onclick="askAbout('Nipe mwongozo wa ufugaji bora wa kuku wa mayai.')">Ufugaji wa kuku</button>
 </div>
+</section>
+
+<section id="premium" hidden>
 <div class="card">
-<h2>⭐ Premium</h2>
-<h2>TSh 10,000 / mwezi</h2>
-<p>Huduma za Premium zitawezeshwa baada ya kuunganisha malipo.</p>
+<h2>⭐ KILIMO AI PREMIUM</h2>
+<p>Mpango wa Premium kwa wakulima wanaohitaji huduma za ziada.</p>
+<div class="price">TSh 10,000 <span style="font-size:14px">/ mwezi</span></div>
+<ul style="line-height:2;margin:15px">
+<li>Maswali bila kikomo kwa kipindi cha usajili</li>
+<li>Uchambuzi wa picha za mimea</li>
+<li>Uchambuzi wa picha za mifugo</li>
+<li>Ushauri wa kilimo na ufugaji</li>
+<li>Huduma ya AI</li>
+</ul>
+<button class="primary" onclick="alert('Mfumo wa malipo utaunganishwa baada ya kuweka Airtel Money au Selcom.')">JIUNGE PREMIUM</button>
+<p class="small">Malipo halisi na uthibitishaji wa uanachama bado vinahitaji kuunganishwa.</p>
 </div>
+</section>
+
 </main>
+
 <footer>
-<h3>KILIMO AI TANZANIA</h3>
-<p>Teknolojia kwa mkulima wa kisasa.</p>
+© 2026 Kilimo AI | Teknolojia kwa maendeleo ya wakulima
 </footer>
+
 <script>
+const AI_URL = "WEKA_LINK_YA_CLOUDFLARE_WORKER_HAPA";
+
+function showSection(id){
+document.querySelectorAll("main section").forEach(s=>s.hidden=true);
+document.getElementById(id).hidden=false;
+window.scrollTo(0,0);
+}
+
+function askAbout(question){
+showSection('ai');
+document.getElementById('question').value=question;
+}
+
 async function askAI(){
-document.getElementById("answer").innerText=
-"Bado tunakamilisha muunganisho wa Gemini AI. Tafadhali subiri hatua inayofuata.";
+const question=document.getElementById('question').value.trim();
+const file=document.getElementById('photo').files[0];
+const answer=document.getElementById('answer');
+const status=document.getElementById('status');
+const btn=document.getElementById('askBtn');
+
+if(!question && !file){
+alert("Andika swali au chagua picha kwanza.");
+return;
+}
+
+if(AI_URL.includes("WEKA_LINK")){
+alert("Bado hujaweka link ya Cloudflare Worker.");
+return;
+}
+
+btn.disabled=true;
+status.innerHTML="⏳ Kilimo AI inachambua swali lako...";
+answer.innerHTML="";
+
+try{
+let imageData=null;
+let mimeType=null;
+
+if(file){
+if(file.size>5*1024*1024){
+throw new Error("Picha iwe chini ya MB 5.");
+}
+imageData=await new Promise((resolve,reject)=>{
+const reader=new FileReader();
+reader.onload=()=>resolve(reader.result.split(",")[1]);
+reader.onerror=reject;
+reader.readAsDataURL(file);
+});
+mimeType=file.type;
+}
+
+const response=await fetch(AI_URL,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+question:question,
+image:imageData,
+mimeType:mimeType
+})
+});
+
+const data=await response.json();
+
+if(!response.ok) throw new Error(data.error||"Imeshindikana kupata majibu.");
+
+answer.textContent=data.answer||"Hakuna jibu lililopatikana.";
+status.innerHTML="✅ Jibu limepatikana.";
+
+}catch(error){
+status.innerHTML="❌ Hitilafu: "+error.message;
+}finally{
+btn.disabled=false;
+}
 }
 </script>
+
 </body>
 </html>
