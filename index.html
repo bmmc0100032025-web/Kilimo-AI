@@ -201,6 +201,108 @@ async function sendQuestion(){
   document.getElementById("status").textContent="Unaweza kuuliza swali jingine.";
  }
 }
+// KILIMO AI - HUDUMA ZOTE ZIFUNGUE
+
+const services = [
+ {
+  title:"🌽 Kilimo cha mazao",
+  desc:"Pata elimu kuhusu mahindi, mpunga, maharage, nyanya, vitunguu, matunda na mboga.",
+  prompt:"Nisaidie kuhusu kilimo cha mazao. Nataka kujua namna bora ya kuanza, kupanda, kuweka mbolea na kuvuna."
+ },
+ {
+  title:"🐄 Ufugaji",
+  desc:"Jifunze ufugaji wa ng'ombe, mbuzi, kondoo na nguruwe, lishe na utunzaji.",
+  prompt:"Nipe mwongozo wa ufugaji wa mifugo, lishe, banda, magonjwa na biashara."
+ },
+ {
+  title:"🐔 Ufugaji wa kuku",
+  desc:"Pata elimu ya kuku wa mayai na nyama, chakula, banda, chanjo na uzalishaji.",
+  prompt:"Nataka kuanza ufugaji wa kuku. Nielekeze kuhusu banda, chakula, chanjo na gharama."
+ },
+ {
+  title:"🦠 Magonjwa ya mimea",
+  desc:"Jifunze kutambua dalili za magonjwa ya mimea, kinga na hatua za matibabu.",
+  prompt:"Nisaidie kutambua na kudhibiti magonjwa ya mimea."
+ },
+ {
+  title:"🛒 Masoko na biashara",
+  desc:"Jifunze kupanga biashara, kutafuta masoko, kukokotoa gharama na faida.",
+  prompt:"Nisaidie kupanga biashara ya kilimo, gharama, faida na masoko Tanzania."
+ },
+ {
+  title:"👨‍🌾 Ushauri wa kitaalamu",
+  desc:"Uliza maswali yoyote kuhusu kilimo na ufugaji na pata ushauri kutoka Kilimo AI.",
+  prompt:"Nipe ushauri wa kitaalamu kuhusu kilimo na ufugaji."
+ }
+];
+
+const serviceModal = document.createElement("div");
+serviceModal.id = "serviceModal";
+serviceModal.style.cssText = `
+ position:fixed;inset:0;background:#000b;z-index:9999;
+ display:none;align-items:center;justify-content:center;
+ padding:15px;
+`;
+serviceModal.innerHTML = `
+ <div style="background:white;padding:25px;border-radius:18px;
+ width:100%;max-width:500px;max-height:85vh;overflow:auto">
+  <button id="closeService" style="float:right;border:0;
+  background:#eee;border-radius:50%;padding:9px;cursor:pointer">✕</button>
+  <div id="serviceDetails"></div>
+  <button id="askService" style="width:100%;padding:15px;
+  background:#14532d;color:white;border:0;border-radius:10px;
+  font-weight:bold;margin-top:20px;cursor:pointer">
+   Uliza Kilimo AI
+  </button>
+ </div>
+`;
+document.body.appendChild(serviceModal);
+
+let selectedService = null;
+
+function openService(index) {
+ selectedService = services[index];
+ if (!selectedService) return;
+
+ document.getElementById("serviceDetails").innerHTML = `
+  <h2 style="color:#14532d;margin:20px 0">
+   ${selectedService.title}
+  </h2>
+  <p style="line-height:1.8;color:#405548">
+   ${selectedService.desc}
+  </p>
+  <p style="margin-top:18px;color:#14532d;font-weight:bold">
+   Karibu ujifunze zaidi kupitia Kilimo AI.
+  </p>
+ `;
+ serviceModal.style.display = "flex";
+}
+
+document.getElementById("closeService").onclick = () => {
+ serviceModal.style.display = "none";
+};
+
+serviceModal.addEventListener("click", e => {
+ if(e.target === serviceModal) {
+  serviceModal.style.display = "none";
+ }
+});
+
+document.getElementById("askService").onclick = () => {
+ if(!selectedService) return;
+ serviceModal.style.display = "none";
+ document.getElementById("question").value =
+  selectedService.prompt;
+ document.getElementById("ushauri").scrollIntoView({
+  behavior:"smooth"
+ });
+};
+
+document.querySelectorAll("#huduma .card").forEach((card,index) => {
+ card.style.cursor = "pointer";
+ card.addEventListener("click", () => openService(index));
+});
+
 </script>
 </body>
 </html>
