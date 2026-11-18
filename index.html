@@ -3,441 +3,69 @@
 <html lang="sw">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#14532d">
-<title>Kilimo AI — Msaidizi wa Mkulima</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kilimo AI Tanzania</title>
 <style>
-:root{--green:#14532d;--green2:#16803c;--pale:#e9f5ec;--ink:#20352a;--muted:#64766a;--line:#dce7de}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f8f2;color:var(--ink)}
-header{background:var(--green);color:white;padding:18px max(18px,calc((100% - 1120px)/2))}
-header h1{margin:0;font-size:27px}
-header p{margin:7px 0 0}
-nav{display:flex;gap:8px;overflow:auto;padding:11px max(12px,calc((100% - 1120px)/2));background:white;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0000000c}
-nav button,.btn{border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer}
-nav button{white-space:nowrap;background:#e6f4e9;color:var(--green)}
-nav button.active,nav button:hover,.btn{background:var(--green2);color:white}
-main{max-width:1120px;margin:auto;padding:18px}
-.page{display:none}
-.page.active{display:block}
-.hero{min-height:250px;padding:30px;border-radius:16px;color:white;background:linear-gradient(100deg,#123d24ee,#123d2466),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400') center/cover;display:flex;flex-direction:column;justify-content:center}
-.hero h2{font-size:30px;margin:0 0 10px;color:white}
-.hero p{max-width:650px;line-height:1.6}
-h2,h3{color:var(--green)}
-h2{margin:12px 0}
-p{line-height:1.55}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:13px;padding:17px;margin:13px 0;box-shadow:0 3px 12px #00000008}
-.card .emoji{font-size:42px;background:var(--pale);border-radius:10px;padding:14px;display:block;text-align:center}
-.card h3{margin:10px 0 5px}
-.card p{color:var(--muted);margin:0 0 8px}
-.btn{margin:8px 0 0}
-.btn.secondary{background:#e6f4e9;color:var(--green)}
-.btn:disabled{opacity:.55;cursor:not-allowed}
-label{display:block;font-weight:bold;margin-top:12px}
-input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #cbd8ce;border-radius:8px;font:inherit;background:white}
-textarea{resize:vertical;min-height:100px}
-.result{display:none;background:#edf8ef;border-left:4px solid var(--green2);padding:15px;border-radius:8px;margin-top:13px;white-space:pre-wrap;line-height:1.6}
-.notice{padding:12px;border-radius:8px;background:#fff7df;color:#6a4d00;margin:12px 0;font-size:14px}
-.small{color:var(--muted);font-size:13px}
-.pill{display:inline-block;background:#e6f4e9;color:var(--green);padding:5px 9px;border-radius:20px;font-size:12px;font-weight:bold}
-#preview{display:none;max-width:100%;max-height:260px;border-radius:10px;margin-top:10px}
-.chatlog{display:flex;flex-direction:column;gap:10px;margin-top:15px}
-.bubble{padding:12px;border-radius:12px;max-width:95%;white-space:pre-wrap;line-height:1.55}
-.user{align-self:flex-end;background:#dff1e3}
-.bot{align-self:flex-start;background:#fff;border:1px solid var(--line)}
-footer{text-align:center;background:var(--green);color:white;padding:25px;margin-top:30px}
-@media(max-width:600px){main{padding:12px}.hero{padding:22px;min-height:230px}.hero h2{font-size:25px}}
+body{margin:0;font-family:Arial;background:#f1f8f0;color:#183b27}
+header{background:#14532d;color:white;text-align:center;padding:25px}
+.hero{padding:65px 20px;color:white;background:linear-gradient(#0005,#0008),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200');background-size:cover;background-position:center}
+main{padding:18px;max-width:750px;margin:auto}
+.card{background:white;padding:20px;margin:15px 0;border-radius:14px}
+button{background:#15803d;color:white;border:0;padding:14px;border-radius:8px;width:100%;font-size:16px}
+textarea,input,select{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #ccc;border-radius:8px}
+img{width:100%;border-radius:10px}
+footer{background:#14532d;color:white;padding:25px;text-align:center}
 </style>
 </head>
 <body>
-
 <header>
 <h1>🌱 KILIMO AI</h1>
-<p>Teknolojia ya kisasa kwa mkulima wa kisasa</p>
+<p>Mshauri wako wa kilimo na ufugaji</p>
 </header>
-
-<nav id="nav">
-<button class="active" data-page="home">Nyumbani</button>
-<button data-page="crops">Mazao</button>
-<button data-page="diagnose">Chunguza picha</button>
-<button data-page="livestock">Mifugo</button>
-<button data-page="chat">Uliza AI</button>
-<button data-page="premium">Premium</button>
-<button data-page="history">Historia</button>
-<button data-page="about">Kuhusu</button>
-</nav>
-
+<section class="hero">
+<h2>Karibu Kilimo AI</h2>
+<p>Jifunze kilimo bora kwa kutumia akili bandia.</p>
+</section>
 <main>
-
-<section id="home" class="page active">
-<div class="hero">
-<h2>Karibu Kilimo AI 🌾</h2>
-<p>Msaidizi wako wa kilimo na ufugaji. Uliza swali au pakia picha ya mmea/mnyama ili kupata uchambuzi wa awali.</p>
-<button class="btn" onclick="go('chat')">Ongea na Kilimo AI</button>
-<p id="slideCaption" class="small" style="color:white;margin-top:14px">Maarifa bora, mavuno bora.</p>
-</div>
-
-<h2>Huduma zetu</h2>
-<div class="grid">
 <div class="card">
-<span class="emoji">🌽</span>
-<h3>Elimu ya mazao</h3>
-<p>Upandaji, mbolea, umwagiliaji na uvunaji.</p>
-<button class="btn secondary" onclick="go('crops')">Fungua</button>
-</div>
-<div class="card">
-<span class="emoji">🔬</span>
-<h3>Uchunguzi wa picha</h3>
-<p>AI ichunguze picha ya mmea au mnyama.</p>
-<button class="btn secondary" onclick="go('diagnose')">Anza</button>
-</div>
-<div class="card">
-<span class="emoji">🐄</span>
-<h3>Ufugaji bora</h3>
-<p>Lishe, afya, banda na uzalishaji wa mifugo.</p>
-<button class="btn secondary" onclick="go('livestock')">Jifunze</button>
-</div>
-</div>
-</section>
-
-<section id="crops" class="page">
-<h2>🌾 Kilimo cha mazao</h2>
-<p>Chagua zao ili kuuliza AI kuhusu kilimo chake.</p>
-<div class="grid" id="cropGrid"></div>
-</section>
-
-<section id="diagnose" class="page">
-<h2>🔬 Uchunguzi wa picha</h2>
-<div class="panel">
-<p>Pakia picha iliyo wazi ya jani, shina, tunda au mnyama. AI itatoa uchambuzi wa awali.</p>
-
-<label>Aina ya uchunguzi</label>
-<select id="subjectType">
-<option value="crop">Mmea / zao</option>
-<option value="livestock">Mnyama / mifugo</option>
-<option value="pest">Mdudu / kisumbufu</option>
-<option value="other">Nyingine</option>
-</select>
-
-<label>Chagua zao au mnyama</label>
-<input id="subject" placeholder="Mfano: nyanya, mahindi, mbuzi, kuku...">
-
-<label>Picha</label>
-<input type="file" id="photo" accept="image/jpeg,image/png,image/webp">
-<img id="preview" alt="Picha uliyochagua">
-
-<label>Eleza dalili au mazingira (si lazima)</label>
-<textarea id="photoNotes" placeholder="Mfano: majani yanageuka njano, tatizo limeanza wiki iliyopita..."></textarea>
-
-<button class="btn" id="analyzeBtn" onclick="analyzeImage()">Chunguza picha kwa AI</button>
-<div id="imageResult" class="result"></div>
-
-<p class="small">Uchunguzi wa picha ni wa awali. AI inaweza kukosea; thibitisha utambuzi na afisa ugani/daktari wa mifugo kabla ya kutumia dawa.</p>
-</div>
-</section>
-
-<section id="livestock" class="page">
-<h2>🐄 Ufugaji bora</h2>
-<div class="grid" id="animalGrid"></div>
-</section>
-
-<section id="chat" class="page">
 <h2>🤖 Uliza Kilimo AI</h2>
-<div class="panel">
-<p>Uliza kuhusu mazao, mifugo, udongo, hali ya hewa ya shamba, masoko au changamoto za uzalishaji.</p>
-
-<label>Lugha</label>
-<select id="language">
-<option value="Swahili">Kiswahili</option>
-<option value="English">English</option>
+<select id="category">
+<option>Kilimo</option>
+<option>Ufugaji</option>
+<option>Magonjwa ya mimea</option>
+<option>Mbolea</option>
+<option>Umwagiliaji</option>
 </select>
-
-<div id="chatlog" class="chatlog"></div>
-
-<label>Swali lako</label>
-<textarea id="question" placeholder="Mfano: Nifanye nini nyanya zangu zikianza kupata madoa meusi?"></textarea>
-
-<button class="btn" id="askBtn" onclick="askAI()">Tuma swali</button>
-<button class="btn secondary" onclick="clearChat()">Futa mazungumzo kwenye kifaa</button>
-
-<p class="small">Historia huhifadhiwa kwenye kifaa hiki pekee kwa sasa. Usitume taarifa binafsi au nywila.</p>
+<textarea id="question" placeholder="Andika swali lako hapa..."></textarea>
+<input type="file" id="photo" accept="image/*">
+<button onclick="askAI()">Tuma swali</button>
+<h3>Jibu:</h3>
+<p id="answer">Majibu yako yataonekana hapa.</p>
 </div>
-</section>
-
-<section id="premium" class="page">
-<h2>⭐ Kilimo AI Premium</h2>
-<div class="panel">
-<span class="pill">Inakuja hivi karibuni</span>
-<h3 style="font-size:27px;margin-top:12px">TSh 10,000 / siku</h3>
-<p>Premium imeandaliwa kwa ajili ya uchambuzi wa kina, majibu ya kipaumbele na kiwango kikubwa cha picha.</p>
-<ul style="padding-left:22px;line-height:1.9">
-<li>Ushauri wa kina wa kitaalamu</li>
-<li>Uchambuzi wa picha zaidi</li>
-<li>Historia na ushauri uliopanuliwa</li>
-<li>Huduma za kipaumbele</li>
-</ul>
-<div class="notice">Malipo hayajaanzishwa. Hakuna fedha itakayokatwa na hakuna akaunti itakayowashwa Premium kwa sasa.</div>
+<div class="card">
+<h2>🌾 Mazao</h2>
+<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700" alt="Shamba halisi">
+<p>Jifunze kuhusu mazao na mbinu bora za kilimo.</p>
 </div>
-</section>
-
-<section id="history" class="page">
-<h2>🕘 Historia ya maswali</h2>
-<div class="panel">
-<p class="small">Historia hii inapatikana kwenye browser/kifaa hiki tu.</p>
-<button class="btn secondary" onclick="renderHistory()">Onyesha upya</button>
-<div id="historyList"></div>
+<div class="card">
+<h2>🐄 Ufugaji</h2>
+<img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=700" alt="Mifugo">
+<p>Jifunze kuhusu ufugaji wa kisasa.</p>
 </div>
-</section>
-
-<section id="about" class="page">
-<h2>Kuhusu Kilimo AI</h2>
-<div class="panel">
-<p>Kilimo AI ni jukwaa la kidigitali linalosaidia wakulima kupata maarifa kuhusu mazao na mifugo.</p>
-<h3>Dira yetu</h3>
-<p>Kuleta maarifa ya teknolojia ya AI karibu na wakulima wa Afrika.</p>
-<h3>Matumizi salama</h3>
-<p>Majibu ya AI ni mwongozo wa awali, si mbadala wa afisa ugani, mtaalamu wa mifugo au vipimo vya maabara.</p>
+<div class="card">
+<h2>⭐ Premium</h2>
+<h2>TSh 10,000 / mwezi</h2>
+<p>Huduma za Premium zitawezeshwa baada ya kuunganisha malipo.</p>
 </div>
-</section>
-
 </main>
-
 <footer>
-<h3 style="color:white">🌱 KILIMO AI</h3>
-<p>Teknolojia kwa maendeleo ya kilimo.</p>
-<p>© 2026 Kilimo AI</p>
+<h3>KILIMO AI TANZANIA</h3>
+<p>Teknolojia kwa mkulima wa kisasa.</p>
 </footer>
-
 <script>
-const API_URL = "WEKA_CLOUDFLARE_WORKER_URL_HAPA";
-
-const crops=[
-["🌽","Mahindi"],["🍅","Nyanya"],["🧅","Vitunguu"],
-["🥔","Viazi"],["🫘","Maharage"],["🌾","Mpunga"],
-["🥬","Kabichi"],["🥕","Karoti"],["🥑","Parachichi"],
-["☕","Kahawa"],["🍌","Ndizi"],["🍠","Viazi vitamu"],
-["🍉","Tikiti maji"],["🌻","Alizeti"]
-];
-
-const animals=[
-["🐄","Ng'ombe"],["🐐","Mbuzi"],["🐑","Kondoo"],
-["🐔","Kuku"],["🐖","Nguruwe"],["🐟","Samaki"],
-["🐝","Nyuki"],["🐇","Sungura"]
-];
-
-function makeCards(id,items,type){
-document.getElementById(id).innerHTML=items.map(x=>`
-<article class="card">
-<span class="emoji">${x[0]}</span>
-<h3>${x[1]}</h3>
-<p>Uliza AI kuhusu lishe, magonjwa, utunzaji na uzalishaji wa ${x[1].toLowerCase()}.</p>
-<button class="btn secondary" onclick="askAbout('${type}','${x[1].replace(/'/g,"\\'")}')">Uliza kuhusu ${x[1]}</button>
-</article>`).join("");
-}
-
-makeCards("cropGrid",crops,"zao");
-makeCards("animalGrid",animals,"mnyama");
-
-function go(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
-window.scrollTo(0,0);
-if(id==="history")renderHistory();
-}
-
-document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
-
-const slides=[
-"Maarifa bora, mavuno bora.",
-"Kilimo endelevu kwa maisha bora.",
-"Teknolojia karibu na mkulima."
-];
-
-let si=0;
-setInterval(()=>{
-const c=document.getElementById("slideCaption");
-if(c)c.textContent=slides[++si%slides.length];
-},4500);
-
-const photo=document.getElementById("photo");
-
-photo.addEventListener("change",()=>{
-const f=photo.files[0],p=document.getElementById("preview");
-if(f){
-if(f.size>5*1024*1024){
-alert("Picha iwe chini ya 5MB.");
-photo.value="";
-return;
-}
-p.src=URL.createObjectURL(f);
-p.style.display="block";
-}
-});
-
-function getHistory(){
-try{return JSON.parse(localStorage.getItem("kilimoAIHistory")||"[]")}
-catch{return []}
-}
-
-function saveHistory(item){
-const h=getHistory();
-h.unshift({...item,at:new Date().toLocaleString()});
-localStorage.setItem("kilimoAIHistory",JSON.stringify(h.slice(0,60)));
-}
-
-function addBubble(text,who){
-const d=document.createElement("div");
-d.className="bubble "+who;
-d.textContent=text;
-document.getElementById("chatlog").appendChild(d);
-}
-
-function askAbout(type,name){
-go("chat");
-document.getElementById("question").value=
-`Nipe mwongozo wa kina kuhusu ${name} katika ${type}: maandalizi, utunzaji, lishe, magonjwa ya kawaida na hatua za kuzuia.`;
-}
-
-async function callAI(prompt,image){
-if(!API_URL||API_URL.includes("WEKA_CLOUDFLARE")){
-throw new Error("Bado hujaweka anuani ya Cloudflare Worker kwenye index.html.");
-}
-
-const payload={
-prompt,
-language:document.getElementById("language")?.value||"Swahili"
-};
-
-if(image){
-payload.image=image.data;
-payload.mimeType=image.mimeType;
-}
-
-const res=await fetch(API_URL,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(payload)
-});
-
-let data={};
-try{data=await res.json()}catch{}
-
-if(!res.ok)throw new Error(data.error||`Hitilafu ya seva (${res.status})`);
-return data;
-}
-
 async function askAI(){
-const q=document.getElementById("question").value.trim();
-const btn=document.getElementById("askBtn");
-
-if(!q){alert("Andika swali kwanza.");return}
-
-addBubble(q,"user");
-document.getElementById("question").value="";
-btn.disabled=true;
-btn.textContent="AI inafikiria...";
-
-try{
-const answer=await callAI(q);
-addBubble(answer.answer||"Sijapata jibu. Jaribu tena.","bot");
-saveHistory({type:"swali",question:q,answer:answer.answer||""});
-}catch(e){
-addBubble("Imeshindikana kupata jibu: "+e.message,"bot");
-}finally{
-btn.disabled=false;
-btn.textContent="Tuma swali";
-}
-}
-
-async function analyzeImage(){
-const f=photo.files[0];
-const subject=document.getElementById("subject").value.trim();
-const notes=document.getElementById("photoNotes").value.trim();
-const type=document.getElementById("subjectType").value;
-const btn=document.getElementById("analyzeBtn");
-const out=document.getElementById("imageResult");
-
-if(!f){alert("Chagua picha kwanza.");return}
-if(!subject){alert("Andika aina ya zao au mnyama.");return}
-
-btn.disabled=true;
-btn.textContent="AI inachunguza picha...";
-out.style.display="block";
-out.textContent="Tafadhali subiri, picha inachambuliwa.";
-
-try{
-const dataUrl=await new Promise((resolve,reject)=>{
-const r=new FileReader();
-r.onload=()=>resolve(r.result);
-r.onerror=reject;
-r.readAsDataURL(f);
-});
-
-const [head,b64]=dataUrl.split(",");
-const mime=head.match(/data:(.*?);/)[1];
-
-const prompt=`Fanya uchunguzi wa awali wa picha hii.
-Aina: ${type}.
-Kitu kinachochunguzwa: ${subject}.
-Maelezo ya mkulima: ${notes||"Hakuna"}.
-Eleza kwanza unachoona kwenye picha, kisha toa uwezekano wa tatizo (usiwe na uhakika usiostahili), dalili zinazounga mkono, maswali ya ziada, hatua salama za haraka, kinga, na lini amwite afisa ugani/daktari wa mifugo.
-Usibuni dawa, dozi au utambuzi usioonekana.
-Jibu kwa Kiswahili rahisi.`;
-
-const answer=await callAI(prompt,{data:b64,mimeType:mime});
-out.textContent=answer.answer||"Hakuna jibu lililopatikana.";
-
-saveHistory({
-type:"uchunguzi wa picha",
-question:prompt,
-answer:answer.answer||""
-});
-
-}catch(e){
-out.textContent="Imeshindikana kuchunguza picha: "+e.message;
-}finally{
-btn.disabled=false;
-btn.textContent="Chunguza picha kwa AI";
-}
-}
-
-function renderHistory(){
-const el=document.getElementById("historyList");
-const h=getHistory();
-el.innerHTML="";
-
-if(!h.length){
-el.textContent="Bado hakuna historia.";
-return;
-}
-
-h.forEach(x=>{
-const d=document.createElement("div");
-d.className="card";
-
-const t=document.createElement("p");
-t.className="small";
-t.textContent=x.at+" • "+x.type;
-
-const q=document.createElement("p");
-q.textContent="Swali: "+x.question;
-
-const a=document.createElement("p");
-a.textContent="Jibu: "+x.answer;
-
-d.append(t,q,a);
-el.append(d);
-});
-}
-
-function clearChat(){
-if(confirm("Una uhakika unataka kufuta historia yote kwenye kifaa hiki?")){
-localStorage.removeItem("kilimoAIHistory");
-document.getElementById("chatlog").innerHTML="";
-renderHistory();
-}
+document.getElementById("answer").innerText=
+"Bado tunakamilisha muunganisho wa Gemini AI. Tafadhali subiri hatua inayofuata.";
 }
 </script>
 </body>
