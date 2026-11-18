@@ -1,0 +1,66 @@
+
+export default async (request) => {
+  if (request.method !== "POST") {
+    return Response.json({error:"Method not allowed"},{status:405});
+  }
+
+  const key = process.env.GEMINI_API_KEY;
+
+  if (!key) {
+    return Response.json({
+      error:"Gemini API key haijawekwa Netlify."
+    },{status:500});
+  }
+
+  try {
+    const body = await request.json();
+
+    const prompt = `
+Wewe ni Kilimo AI, mtaalamu msaidizi wa kilimo na ufugaji Tanzania.
+Jibu kwa Kiswahili rahisi na kwa hatua zinazoeleweka.
+
+Mada: ${body.topic}
+Eneo: ${body.location}
+Swali: ${body.question}
+
+Toa ushauri wa kitaalamu na tahadhari za usalama.
+Usibuni utambuzi wa uhakika.
+Kwa dawa na dozi, elekeza mtumiaji kuthibitisha kwa afisa ugani.
+`;
+
+    const result = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "x-goog-api-key":key
+        },
+        body:JSON.stringify({
+          contents:[{
+            role:"user",
+            parts:[{text:prompt}]
+          }]
+        })
+      }
+    );
+
+    const data = await result.json();
+
+    if(!result.ok){
+      return Response.json({
+        error:data.error?.message || "Gemini API error"
+      },{status:result.status});
+    }
+
+    const answer=data.candidates?.[0]?.content?.parts
+      ?.map(p=>p.text || "").join("\n");
+
+    return Response.json({answer:answer || "Jaribu tena."});
+
+  } catch(error) {
+    return Response.json({
+      error:"Hitilafu imetokea. Jaribu tena."
+    },{status:500});
+  }
+};
