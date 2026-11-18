@@ -4,103 +4,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kilimo AI</title>
+<meta name="theme-color" content="#14532d">
+<title>KILIMO AI | Smart Agriculture</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f1f7ef;color:#20352a}
-header{background:#14532d;color:white;padding:25px;text-align:center}
-main{max-width:750px;margin:20px auto;padding:15px}
-.card{background:white;padding:20px;border-radius:15px;margin-bottom:18px}
-h2{color:#14532d}
-input,select,textarea{width:100%;padding:13px;margin:8px 0 15px;border:1px solid #ccc;border-radius:8px;font-size:16px}
-textarea{height:120px}
-button{background:#166534;color:white;padding:14px;border:0;border-radius:8px;width:100%;font-size:16px}
-img{width:100%;height:180px;object-fit:cover;border-radius:10px}
-#answer{white-space:pre-wrap;background:#eef7ed;padding:15px;margin-top:15px;border-radius:8px;line-height:1.6}
-.price{font-size:25px;color:#166534;font-weight:bold}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#14532d;--lime:#84cc16;--bg:#f3f8f2;--dark:#183426}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:var(--green);color:white;padding:17px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:23px;font-weight:900}
+.logo span{color:#bef264}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:13px}
+.hero{height:390px;position:relative;background:#173c25;overflow:hidden;color:white}
+.hero img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.65;transition:opacity 1s}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:30px 7%;background:linear-gradient(90deg,#092b19cc,transparent)}
+.hero h1{font-size:clamp(30px,6vw,52px);max-width:650px;margin-bottom:15px}
+.hero p{font-size:17px;max-width:520px;line-height:1.6}
+.btn{display:inline-block;background:#84cc16;color:#142d1c;padding:13px 20px;border:0;border-radius:9px;font-weight:bold;text-decoration:none;cursor:pointer;margin-top:18px}
+.container{max-width:1150px;margin:auto;padding:28px 18px}
+.section-title{font-size:25px;margin-bottom:18px;color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 4px 15px #0000000c}
+.card img{width:100%;height:155px;object-fit:cover}
+.card-content{padding:17px}
+.card h3{margin-bottom:8px;color:var(--green)}
+.card p{font-size:14px;line-height:1.5;color:#52645a}
+.chatbox{background:white;border-radius:16px;padding:20px;box-shadow:0 4px 20px #00000010}
+.messages{height:300px;overflow:auto;padding:10px;background:#f5f8f4;border-radius:10px;margin-bottom:12px}
+.msg{padding:12px;margin:8px 0;border-radius:10px;max-width:90%;white-space:pre-wrap;line-height:1.5;font-size:14px}
+.bot{background:#e0f2df}
+.user{background:#dbeafe;margin-left:auto}
+.chat-input{display:flex;gap:8px}
+.chat-input input{min-width:0;flex:1;padding:14px;border:1px solid #ccd8ce;border-radius:9px;font-size:15px}
+.chat-input button{background:var(--green);color:white;border:0;padding:12px 18px;border-radius:9px}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.quick button{padding:8px 12px;border:1px solid #c5d8c7;background:white;border-radius:20px;color:var(--green);cursor:pointer}
+.price{font-size:30px;color:var(--green);font-weight:bold;margin:12px 0}
+.premium{border:2px solid #84cc16;padding:25px;text-align:center}
+footer{background:#103b25;color:white;text-align:center;padding:28px;margin-top:30px}
+input,button{font-family:inherit}
+@media(max-width:600px){header{align-items:flex-start;gap:12px;flex-direction:column}.hero{height:340px}.hero-content{padding:22px}.chat-input button{padding:10px}}
 </style>
 </head>
 <body>
 
 <header>
-<h1>🌱 KILIMO AI</h1>
-<p>Mshauri wako wa kisasa wa kilimo na ufugaji</p>
+ <div class="logo">🌱 KILIMO <span>AI</span></div>
+ <nav>
+  <a href="#home">Nyumbani</a>
+  <a href="#huduma">Huduma</a>
+  <a href="#ushauri">AI Mshauri</a>
+  <a href="#premium">Premium</a>
+ </nav>
 </header>
 
-<main>
-<div class="card">
-<h2>Karibu Kilimo AI</h2>
-<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900" alt="Shamba halisi">
-<p>Pata ushauri kuhusu mazao, mifugo, magonjwa na biashara ya kilimo.</p>
-</div>
+<section class="hero" id="home">
+ <img id="heroImage" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85" alt="Shamba halisi">
+ <div class="hero-content">
+  <h1>Karibu KILIMO AI</h1>
+  <p>Teknolojia ya kisasa kwa mkulima na mfugaji. Pata maarifa, ushauri na mbinu bora za kuongeza uzalishaji.</p>
+  <a href="#ushauri" class="btn">Anza kuzungumza na AI</a>
+ </div>
+</section>
 
-<div class="card">
-<h2>Uliza Kilimo AI</h2>
+<main class="container">
+ <h2 class="section-title">Huduma zetu</h2>
+ <section class="grid" id="huduma">
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1592982537447-6f2a6a0b6b8a?w=700&q=80" alt="Kilimo cha mazao">
+   <div class="card-content"><h3>🌽 Kilimo cha mazao</h3><p>Jifunze upandaji, mbolea, umwagiliaji na uvunaji wa mazao mbalimbali.</p></div>
+  </article>
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=700&q=80" alt="Ng'ombe shambani">
+   <div class="card-content"><h3>🐄 Ufugaji</h3><p>Maarifa kuhusu ng'ombe, mbuzi, kondoo, nguruwe na mifugo mingine.</p></div>
+  </article>
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=700&q=80" alt="Kuku">
+   <div class="card-content"><h3>🐔 Ufugaji wa kuku</h3><p>Lishe, banda, uzalishaji wa mayai na usimamizi wa kuku.</p></div>
+  </article>
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=700&q=80" alt="Mazao">
+   <div class="card-content"><h3>🦠 Magonjwa ya mimea</h3><p>Elewa dalili za magonjwa na pata mwongozo wa hatua za kuchukua.</p></div>
+  </article>
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&q=80" alt="Soko la mazao">
+   <div class="card-content"><h3>🛒 Masoko na biashara</h3><p>Jifunze kupanga biashara ya kilimo na kutafuta masoko.</p></div>
+  </article>
+  <article class="card">
+   <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=80" alt="Mkulima">
+   <div class="card-content"><h3>👨‍🌾 Ushauri wa kitaalamu</h3><p>Pata majibu yanayozingatia mazingira na hali ya kilimo chako.</p></div>
+  </article>
+ </section>
 
-<label>Mada</label>
-<select id="topic">
-<option>Ugonjwa wa mimea</option>
-<option>Ufugaji wa kuku</option>
-<option>Ufugaji wa ng'ombe</option>
-<option>Uzalishaji wa mazao</option>
-<option>Mbolea na udongo</option>
-<option>Umwagiliaji</option>
-<option>Biashara ya kilimo</option>
-</select>
+ <section id="ushauri" style="margin-top:40px">
+  <h2 class="section-title">🤖 Zungumza na Kilimo AI</h2>
+  <div class="chatbox">
+   <p style="margin-bottom:12px">Uliza swali kuhusu kilimo au ufugaji kwa Kiswahili.</p>
+   <div class="quick">
+    <button onclick="askQuick('Nataka kulima mahindi. Nianzie wapi?')">Kilimo cha mahindi</button>
+    <button onclick="askQuick('Nipe mwongozo wa ufugaji wa kuku wa mayai.')">Kuku wa mayai</button>
+    <button onclick="askQuick('Nisaidie kutambua dalili za magonjwa ya mimea.')">Magonjwa ya mimea</button>
+   </div>
+   <div class="messages" id="messages" aria-live="polite">
+    <div class="msg bot">Habari! Mimi ni Kilimo AI. 🌱 Naweza kukusaidia kuhusu kilimo, mifugo, magonjwa na biashara ya mazao. Ungependa kujifunza nini?</div>
+   </div>
+   <div class="chat-input">
+    <input id="question" placeholder="Andika swali lako hapa..." onkeydown="if(event.key==='Enter')sendQuestion()">
+    <button id="sendBtn" onclick="sendQuestion()">Tuma ➤</button>
+   </div>
+   <p id="status" style="font-size:12px;color:#64748b;margin-top:10px">AI itahitaji intaneti kufanya kazi.</p>
+  </div>
+ </section>
 
-<label>Eneo lako</label>
-<input id="location" placeholder="Mfano: Arusha">
-
-<label>Andika swali lako</label>
-<textarea id="question" placeholder="Andika tatizo lako hapa..."></textarea>
-
-<button id="send" onclick="askAI()">ULIZA AI</button>
-
-<div id="answer">Jibu la AI litaonekana hapa.</div>
-</div>
-
-<div class="card">
-<h2>Premium Kilimo AI</h2>
-<p class="price">TSh 10,000 / mwezi</p>
-<p>Mpango wa Premium kwa wakulima wanaohitaji huduma za kina.</p>
-<p>Malipo yataunganishwa katika hatua inayofuata.</p>
-</div>
-
-<div class="card">
-<h2>Ufugaji na Mazao</h2>
-<img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=900" alt="Kuku halisi">
-<p>Jifunze mbinu bora za ufugaji na uzalishaji.</p>
-</div>
+ <section id="premium" style="margin-top:40px">
+  <h2 class="section-title">KILIMO AI Premium</h2>
+  <div class="card premium">
+   <h3>🌟 Premium Membership</h3>
+   <div class="price">TSh 10,000 <small style="font-size:14px">/ mwezi</small></div>
+   <p>Mpango wa Premium kwa watumiaji wanaotaka huduma za ziada.</p>
+   <p style="margin-top:12px">✓ Ushauri wa AI</p>
+   <p>✓ Elimu ya kilimo na ufugaji</p>
+   <p>✓ Mwongozo wa magonjwa na uzalishaji</p>
+   <p>✓ Huduma kupitia simu na kompyuta</p>
+   <button class="btn" onclick="alert('Mfumo wa malipo utaunganishwa baada ya kuweka mtoa huduma wa malipo.')">Jiunge na Premium</button>
+   <p style="font-size:12px;margin-top:12px;color:#64748b">Malipo bado hayajaunganishwa. Usitume fedha kupitia kitufe hiki.</p>
+  </div>
+ </section>
 </main>
 
+<footer>
+ <h3>🌱 KILIMO AI</h3>
+ <p style="margin-top:8px">Teknolojia kwa maendeleo ya kilimo na ufugaji.</p>
+ <p style="margin-top:8px;font-size:12px">© 2026 KILIMO AI. Haki zote zimehifadhiwa.</p>
+</footer>
+
 <script>
-async function askAI(){
-const question=document.getElementById("question").value.trim();
-const topic=document.getElementById("topic").value;
-const location=document.getElementById("location").value;
-const answer=document.getElementById("answer");
-const btn=document.getElementById("send");
+// Badilisha picha ya ukurasa kila baada ya sekunde 5
+const heroPhotos=[
+ "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85",
+ "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?w=1600&q=85",
+ "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1600&q=85",
+ "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600&q=85",
+ "https://images.unsplash.com/photo-1523742815152-4f8c5a5a6b3f?w=1600&q=85"
+];
+let photoIndex=0;
+setInterval(()=>{
+ photoIndex=(photoIndex+1)%heroPhotos.length;
+ const img=document.getElementById("heroImage");
+ img.style.opacity="0";
+ setTimeout(()=>{img.src=heroPhotos[photoIndex];img.style.opacity=".65"},500);
+},5000);
 
-if(!question){answer.innerText="Tafadhali andika swali kwanza.";return;}
+// Weka URL ya Cloudflare Worker baada ya ku-deploy
+const WORKER_URL="WEKA_URL_YA_CLOUDFLARE_WORKER_HAPA";
 
-btn.disabled=true;
-btn.innerText="INAFIKIRIA...";
-answer.innerText="Subiri kidogo...";
-
-try{
-const response=await fetch("/.netlify/functions/ask",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({question,topic,location})
-});
-const data=await response.json();
-if(!response.ok)throw new Error(data.error||"Hitilafu imetokea");
-answer.innerText=data.answer;
-}catch(error){
-answer.innerText="Imeshindikana: "+error.message;
+function addMessage(text,type){
+ const box=document.getElementById("messages");
+ const div=document.createElement("div");
+ div.className="msg "+type;
+ div.textContent=text;
+ box.appendChild(div);
+ box.scrollTop=box.scrollHeight;
 }
-btn.disabled=false;
-btn.innerText="ULIZA AI";
+function askQuick(text){
+ document.getElementById("question").value=text;
+ sendQuestion();
+}
+async function sendQuestion(){
+ const input=document.getElementById("question");
+ const btn=document.getElementById("sendBtn");
+ const question=input.value.trim();
+ if(!question)return;
+ if(WORKER_URL.includes("WEKA_URL")){
+  addMessage("Kwanza weka anwani ya Cloudflare Worker kwenye code ya ukurasa.","bot");
+  return;
+ }
+ addMessage(question,"user");
+ input.value="";
+ btn.disabled=true;
+ btn.textContent="...";
+ document.getElementById("status").textContent="Kilimo AI inatafuta jibu...";
+ try{
+  const response=await fetch(WORKER_URL,{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({question})
+  });
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.error||"Imeshindikana kupata jibu.");
+  addMessage(data.answer||"Sijapata jibu. Jaribu tena.","bot");
+ }catch(error){
+  addMessage("Samahani, kuna tatizo la kuunganisha AI. Hakikisha Worker imewekwa sawa na intaneti ipo. "+error.message,"bot");
+ }finally{
+  btn.disabled=false;
+  btn.textContent="Tuma ➤";
+  document.getElementById("status").textContent="Unaweza kuuliza swali jingine.";
+ }
 }
 </script>
 </body>
