@@ -1,0 +1,136 @@
+
+export default {
+  async fetch(request, env) {
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    };
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers });
+    }
+
+    if (request.method !== "POST") {
+      return new Response(
+        JSON.stringify({ error: "Method not allowed" }),
+        { status: 405, headers }
+      );
+    }
+
+    try {
+      if (!env.GEMINI_API_KEY) {
+        throw new Error("Gemini API key haijawekwa.");
+      }
+
+      const body = await request.json();
+      const question = String(body.question || "").slice(0, 10000);
+      const image = body.image;
+      const mimeType = body.mimeType;
+
+      if (!question && !image) {
+        return new Response(
+          JSON.stringify({ error: "Tafadhali tuma swali au picha." }),
+          { status: 400, headers }
+        );
+      }
+
+      const prompt = `
+Wewe ni Kilimo AI, mtaalamu wa kilimo na ufugaji.
+
+Unatoa ushauri kwa wakulima wa Tanzania na Afrika.
+
+Majukumu yako:
+1. Kushauri kuhusu kilimo cha mazao.
+2. Kutambua dalili za magonjwa ya mimea kupitia picha.
+3. Kushauri kuhusu mbolea na umwagiliaji.
+4. Kushauri kuhusu ufugaji wa kuku, ng'ombe, mbuzi na mifugo mingine.
+5. Kusaidia kutambua dalili za magonjwa ya mifugo.
+6. Kutoa hatua za kuzuia hasara kwa mkulima.
+
+Jibu kwa Kiswahili rahisi na kinachoeleweka.
+Toa hatua za kufanya kwa mpangilio.
+Usibuni uhakika wa utambuzi wa ugonjwa ikiwa ushahidi hautoshi.
+Eleza wakati mkulima anahitaji msaada wa mtaalamu wa kilimo au daktari wa mifugo.
+
+Swali la mkulima:
+${question || "Chambua picha hii na eleza unachoona."}
+`;
+
+      const parts = [{ text: prompt }];
+
+      if (image) {
+        if (
+          typeof image !== "string" ||
+          image.length > 7_000_000 ||
+          !["image/jpeg", "image/png", "image/webp"].includes(mimeType)
+        ) {
+          return new Response(
+            JSON.stringify({ error: "Aina au ukubwa wa picha si sahihi." }),
+            { status: 400, headers }
+          );
+        }
+
+        parts.push({
+          inline_data: {
+            mime_type: mimeType,
+            data: image
+          }
+        });
+      }
+
+      const aiResponse = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": env.GEMINI_API_KEY
+          },
+          body: JSON.stringify({
+            contents: [{
+              role: "user",
+              parts: parts
+            }],
+            generationConfig: {
+              temperature: 0.4,
+              maxOutputTokens: 1500
+            }
+          })
+        }
+      );
+
+      const result = await aiResponse.json();
+
+      if (!aiResponse.ok) {
+        return new Response(
+          JSON.stringify({
+            error: result.error?.message || "Gemini AI imeshindwa kujibu."
+          }),
+          { status: 502, headers }
+        );
+      }
+
+      const answer = result.candidates?.[0]?.content?.parts
+        ?.map(part => part.text || "")
+        .join("\n");
+
+      if (!answer) {
+        throw new Error("AI haikurudisha jibu.");
+      }
+
+      return new Response(
+        JSON.stringify({ answer }),
+        { status: 200, headers }
+      );
+
+    } catch (error) {
+      return new Response(
+        JSON.stringify({ error: error.message || "Hitilafu imetokea." }),
+        { status: 500, headers }
+      );
+    }
+  }
+};
