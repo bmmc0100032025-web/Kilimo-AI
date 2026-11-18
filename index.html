@@ -4,46 +4,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KILIMO AI</title>
+<meta name="description" content="Kilimo AI - Teknolojia na ushauri wa kilimo kwa wakulima wa Tanzania.">
+<title>KILIMO AI - Kilimo Bora</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f2f8f1;color:#183b20}
-header{background:#176b35;color:white;padding:25px 15px;text-align:center}
-header h1{margin:0;font-size:27px}
-header p{margin-bottom:0}
-main{padding:18px}
-.welcome{background:white;padding:20px;border-radius:15px;margin-bottom:18px}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:white;padding:20px 10px;border-radius:13px;text-align:center;box-shadow:0 2px 7px #ddd}
-.card span{font-size:30px}
-.card h3{font-size:15px}
-button{background:#176b35;color:white;border:0;padding:12px;border-radius:8px}
-footer{text-align:center;padding:20px;color:#666}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f7ef;color:#193b24}
+header{background:#176b35;color:white;padding:22px 15px;text-align:center}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0}
+nav{background:#104b27;padding:12px;display:flex;gap:9px;overflow-x:auto}
+nav button{background:#287d43;color:white;border:0;padding:11px 15px;border-radius:7px;white-space:nowrap}
+nav button:hover{background:#65a85d}
+main{max-width:900px;margin:auto;padding:16px}
+.welcome{background:white;padding:22px;border-radius:13px;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card{background:white;border-radius:12px;padding:18px;text-align:center;box-shadow:0 2px 8px #0001}
+.card button{width:100%;background:#176b35;color:white;border:0;padding:11px;border-radius:7px}
+.card .emoji{font-size:35px}
+.page{display:none;background:white;padding:20px;border-radius:12px;margin-top:15px}
+.page.active{display:block}
+input,textarea,select{width:100%;padding:12px;margin:9px 0;border:1px solid #bbb;border-radius:7px;font-size:16px}
+.action{background:#176b35;color:white;border:0;padding:12px 18px;border-radius:7px}
+.result{background:#edf7eb;padding:15px;border-radius:8px;margin-top:12px;white-space:pre-wrap}
+.item{padding:12px;border-bottom:1px solid #ddd}
+.back{background:#555;color:white;border:0;padding:10px 15px;border-radius:6px}
+footer{text-align:center;padding:25px;color:#666}
+h2{color:#176b35}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>🌱 KILIMO AI</h1>
 <p>Akili ya Kilimo, Maendeleo ya Mkulima</p>
+<p>Karibu kwenye teknolojia ya kilimo kwa Kiswahili</p>
 </header>
+
+<nav>
+<button onclick="showPage('home')">Nyumbani</button>
+<button onclick="showPage('ai')">AI ya Kilimo</button>
+<button onclick="showPage('disease')">Magonjwa</button>
+<button onclick="showPage('fertilizer')">Mbolea</button>
+<button onclick="showPage('livestock')">Ufugaji</button>
+<button onclick="showPage('market')">Masoko</button>
+<button onclick="showPage('calendar')">Kalenda</button>
+</nav>
+
 <main>
-<section class="welcome">
-<h2>Karibu Kilimo AI!</h2>
-<p>Msaidizi wako wa kisasa katika kilimo na ufugaji. Pata elimu, ushauri na teknolojia ya kilimo kwa Kiswahili na Kiingereza.</p>
-</section>
+
+<section id="home" class="page active">
+<div class="welcome">
+<h2>Karibu Kilimo AI 🌾</h2>
+<p>Jifunze kilimo, tambua changamoto za mimea, pata mwongozo wa mbolea na ufugaji. Tunakuletea teknolojia ya kilimo kwa lugha rahisi ya Kiswahili.</p>
+</div>
+
 <h2>Huduma Zetu</h2>
 <div class="cards">
-<div class="card"><span>🤖</span><h3>AI Mkulima</h3><p>Uliza maswali ya kilimo.</p></div>
-<div class="card"><span>🌽</span><h3>Ushauri wa Mazao</h3><p>Jifunze kuhusu mazao.</p></div>
-<div class="card"><span>🔬</span><h3>Magonjwa ya Mimea</h3><p>Utambuzi wa magonjwa.</p></div>
-<div class="card"><span>🐄</span><h3>Ufugaji</h3><p>Elimu ya mifugo.</p></div>
-<div class="card"><span>🌦️</span><h3>Hali ya Hewa</h3><p>Ushauri wa misimu.</p></div>
-<div class="card"><span>🛒</span><h3>Soko la Mazao</h3><p>Bei na biashara.</p></div>
-<div class="card"><span>📅</span><h3>Kalenda ya Kilimo</h3><p>Panga shughuli zako.</p></div>
+
+<div class="card">
+<div class="emoji">🤖</div>
+<h3>AI ya Kilimo</h3>
+<p>Uliza maswali kuhusu kilimo.</p>
+<button onclick="showPage('ai')">Fungua</button>
 </div>
+
+<div class="card">
+<div class="emoji">🌿</div>
+<h3>Magonjwa ya Mimea</h3>
+<p>Jifunze dalili na udhibiti.</p>
+<button onclick="showPage('disease')">Fungua</button>
+</div>
+
+<div class="card">
+<div class="emoji">🧪</div>
+<h3>Ushauri wa Mbolea</h3>
+<p>Jifunze kuhusu mbolea.</p>
+<button onclick="showPage('fertilizer')">Fungua</button>
+</div>
+
+<div class="card">
+<div class="emoji">🐄</div>
+<h3>Ufugaji</h3>
+<p>Elimu ya mifugo na afya.</p>
+<button onclick="showPage('livestock')">Fungua</button>
+</div>
+
+<div class="card">
+<div class="emoji">🛒</div>
+<h3>Soko la Mazao</h3>
+<p>Elimu ya biashara ya mazao.</p>
+<button onclick="showPage('market')">Fungua</button>
+</div>
+
+<div class="card">
+<div class="emoji">📅</div>
+<h3>Kalenda ya Kilimo</h3>
+<p>Panga shughuli zako za shamba.</p>
+<button onclick="showPage('calendar')">Fungua</button>
+</div>
+
+</div>
+</section>
+
+<section id="ai" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>🤖 AI ya Kilimo</h2>
+<p>Andika swali lako kuhusu kilimo.</p>
+<textarea id="question" placeholder="Mfano: Kwa nini majani ya nyanya yanakuwa ya njano?"></textarea>
+<button class="action" onclick="askAI()">Tafuta Ushauri</button>
+<div id="aiResult" class="result">Jibu lako litaonekana hapa.</div>
+</section>
+
+<section id="disease" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>🌿 Magonjwa ya Mimea</h2>
+<p>Chagua zao ili kupata mwongozo.</p>
+<select id="crop">
+<option value="nyanya">Nyanya</option>
+<option value="mahindi">Mahindi</option>
+<option value="maharage">Maharage</option>
+<option value="viazi">Viazi</option>
+</select>
+<button class="action" onclick="checkDisease()">Tafuta Magonjwa</button>
+<div id="diseaseResult" class="result">Taarifa za magonjwa zitaonekana hapa.</div>
+</section>
+
+<section id="fertilizer" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>🧪 Ushauri wa Mbolea</h2>
+<label>Chagua zao:</label>
+<select id="fertCrop">
+<option>Mahindi</option>
+<option>Nyanya</option>
+<option>Maharage</option>
+<option>Viazi</option>
+<option>Mchele</option>
+</select>
+<label>Chagua aina ya udongo:</label>
+<select id="soil">
+<option>Udongo wa kichanga</option>
+<option>Udongo wa mfinyanzi</option>
+<option>Udongo tifutifu</option>
+<option>Sijui aina ya udongo</option>
+</select>
+<button class="action" onclick="fertAdvice()">Pata Ushauri</button>
+<div id="fertResult" class="result"></div>
+</section>
+
+<section id="livestock" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>🐄 Kituo cha Ufugaji</h2>
+<div class="item"><h3>🐔 Kuku</h3><p>Jifunze lishe, banda, usafi na utunzaji wa kuku.</p></div>
+<div class="item"><h3>🐄 Ng'ombe</h3><p>Jifunze lishe, maji, usafi na utunzaji wa ng'ombe.</p></div>
+<div class="item"><h3>🐐 Mbuzi</h3><p>Jifunze ufugaji bora na utunzaji wa mbuzi.</p></div>
+<div class="item"><h3>🐑 Kondoo</h3><p>Elimu ya chakula na afya ya kondoo.</p></div>
+<p>Kwa dalili za ugonjwa, wasiliana na daktari wa mifugo.</p>
+</section>
+
+<section id="market" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>🛒 Soko la Mazao</h2>
+<p>Chagua zao unalotaka kufuatilia:</p>
+<select id="marketCrop">
+<option>Mahindi</option>
+<option>Maharage</option>
+<option>Mchele</option>
+<option>Nyanya</option>
+<option>Viazi</option>
+<option>Vitunguu</option>
+</select>
+<button class="action" onclick="marketAdvice()">Endelea</button>
+<div id="marketResult" class="result"></div>
+<p>Bei halisi za soko zitaunganishwa na chanzo cha taarifa za masoko katika hatua inayofuata.</p>
+</section>
+
+<section id="calendar" class="page">
+<button class="back" onclick="showPage('home')">← Rudi</button>
+<h2>📅 Kalenda ya Kilimo</h2>
+<label>Chagua zao:</label>
+<select id="calCrop">
+<option>Mahindi</option>
+<option>Maharage</option>
+<option>Nyanya</option>
+<option>Mchele</option>
+</select>
+<button class="action" onclick="calendarAdvice()">Pata Ratiba</button>
+<div id="calResult" class="result"></div>
+</section>
+
 </main>
+
 <footer>
-<p>© 2026 KILIMO AI. Haki zote zimehifadhiwa.</p>
+<p>© 2026 KILIMO AI</p>
+<p>Teknolojia kwa Maendeleo ya Mkulima 🌱</p>
 </footer>
+
+<script>
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function askAI(){
+let q=document.getElementById('question').value.toLowerCase();
+let answer="Tafadhali eleza zaidi kuhusu zao lako, dalili unazoona na eneo ulilopo ili kupata mwongozo unaofaa.";
+if(!q.trim()){
+answer="Tafadhali andika swali lako kwanza.";
+}else if(q.includes("njano")||q.includes("majani")){
+answer="Majani kuwa ya njano yanaweza kusababishwa na upungufu wa virutubisho, maji mengi au machache, wadudu au magonjwa. Kagua majani, mizizi na hali ya udongo kabla ya kutumia dawa au mbolea.";
+}else if(q.includes("nyanya")){
+answer="Nyanya zinahitaji udongo wenye rutuba, maji ya kutosha bila kutuama, mwanga wa jua na ufuatiliaji wa magonjwa. Kagua majani na matunda mara kwa mara.";
+}else if(q.includes("mahindi")){
+answer="Mahindi yanahitaji mbegu bora, maandalizi mazuri ya shamba, lishe sahihi na udhibiti wa visumbufu. Panda kulingana na msimu na ushauri wa eneo lako.";
+}else if(q.includes("maharage")){
+answer="Maharage yanahitaji mbegu bora, udongo usiotuamisha maji na nafasi sahihi za kupanda. Fuatilia wadudu na magonjwa.";
+}else if(q.includes("maji")){
+answer="Mimea inahitaji maji kulingana na aina ya zao, udongo na hatua ya ukuaji. Epuka maji mengi yanayosababisha mizizi kuoza.";
+}
+document.getElementById('aiResult').textContent=answer+"\n\nHuu ni mwongozo wa awali, si utambuzi wa kitaalamu.";
+}
+
+function checkDisease(){
+let crop=document.getElementById('crop').value;
+let data={
+nyanya:"Magonjwa yanayoweza kushambulia nyanya ni ukungu wa majani, bacterial wilt na early blight. Angalia dalili kwa karibu. Ondoa mimea iliyoathirika sana na pata ushauri wa mtaalamu kabla ya kutumia dawa.",
+mahindi:"Mahindi yanaweza kushambuliwa na fall armyworm, maize lethal necrosis na magonjwa ya ukungu. Kagua majani, mashina na vitovu vya mimea.",
+maharage:"Maharage yanaweza kupata anthracnose, angular leaf spot na mosaic. Tumia mbegu bora na fuatilia mabadiliko ya majani.",
+viazi:"Viazi vinaweza kupata late blight, early blight na bacterial wilt. Kagua majani, mashina na viazi."
+};
+document.getElementById('diseaseResult').textContent=data[crop];
+}
+
+function fertAdvice(){
+let crop=document.getElementById('fertCrop').value;
+let soil=document.getElementById('soil').value;
+document.getElementById('fertResult').textContent=
+"Zao: "+crop+"\nUdongo: "+soil+
+"\n\nFanya uchunguzi wa udongo ili kujua virutubisho vinavyokosekana. Mbolea ya kupandia na kukuzia ichaguliwe kulingana na zao, udongo na matokeo ya uchunguzi. Usitumie kiwango cha mbolea bila maelekezo sahihi ya kitaalamu.";
+}
+
+function marketAdvice(){
+let crop=document.getElementById('marketCrop').value;
+document.getElementById('marketResult').textContent=
+"Umechagua: "+crop+
+"\n\nKabla ya kuuza, linganisha bei katika masoko ya karibu, gharama za usafirishaji na ubora wa mazao. Bei za sasa hazijaunganishwa bado.";
+}
+
+function calendarAdvice(){
+let crop=document.getElementById('calCrop').value;
+document.getElementById('calResult').textContent=
+"Ratiba ya jumla ya "+crop+
+"\n\n1. Andaa shamba na safisha magugu.\n2. Chagua mbegu bora.\n3. Panda kulingana na msimu na mvua za eneo lako.\n4. Fuatilia magugu, wadudu na magonjwa.\n5. Tunza zao hadi kuvuna.\n6. Vuna na hifadhi vizuri.\n\nRatiba sahihi hutegemea eneo, msimu na aina ya zao.";
+}
+</script>
+
 </body>
 </html>
